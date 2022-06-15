@@ -1,0 +1,16 @@
+[ {
+  "korisnicko_ime" : "admin",
+  "lozinka" : "admin",
+  "ime" : "Pera",
+  "prezime" : "Peric",
+  "pol" : "muski",
+  "uloga" : "Administrator" 
+},
+{
+  "korisnicko_ime" : "admin2",
+  "lozinka" : "admin2",
+  "ime" : "Tito",
+  "prezime" : "Tito",
+  "pol" : "muski",
+  "uloga" : "Administrator" 
+}]
