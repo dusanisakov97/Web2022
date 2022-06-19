@@ -1,0 +1,21 @@
+[ {
+    "korisnicko_ime": "trener1",
+    "lozinka": "trener1",
+    "ime": "Ziva",
+    "prezime": "Zivic",
+    "uloga": "Trener"
+},{
+    "korisnicko_ime": "trener2",
+    "lozinka": "trener2",
+    "ime": "Jova",
+    "prezime": "Jovic",
+    "pol": "muski",
+    "uloga": "Trener"
+},{
+    "korisnicko_ime": "trener3",
+    "lozinka": "trener3",
+    "ime": "Mara",
+    "prezime": "Maric",
+    "pol": "zenski",
+    "uloga": "Trener"
+} ]

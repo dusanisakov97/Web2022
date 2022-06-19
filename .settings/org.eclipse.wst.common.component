@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Projekat2022">
+        
+    <wb-module deploy-name="Projekat22">
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Projekat2022"/>
-        <property name="java-output-path" value="/Projekat2022/build/classes"/>
+                
+        <property name="java-output-path" value="/Projekat22/build/classes"/>
+        <property name="context-root" value="Projekat22"/>
+            
     </wb-module>
+    
 </project-modules>

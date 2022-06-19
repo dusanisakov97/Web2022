@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	$('#greskaKorImePor').hide();
 	$('#greskaLozPor').hide();
 	$('#greskaPonLozPor').hide();
@@ -96,9 +96,8 @@ $(document).ready(function(){
 		}
 
 	}
-	
+
 	$('#registruj').click(function(event) {
-		
 		event.preventDefault();
 
 		greskaKorIme = false;
@@ -113,12 +112,47 @@ $(document).ready(function(){
 		proveriIme();
 		proveriPrezime();
 		
-	})
-	
-	//odustajanje od registracije korisnika
+
+		if (greskaKorIme == false && greskaLoz == false && greskaPonLoz == false && greskaIme == false && greskaPrz == false) {
+			
+			
+			let podaci = {
+				"korisnicko_ime": $('#korIme').val(),
+				"lozinka": $('#loz').val(),
+				"ime": $('#imeKorisnika').val(),
+				"prezime": $('#przKorisnika').val(),
+				"pol": $('#pol option:selected').text()
+			};
+			
+			var s = JSON.stringify(podaci);
+			
+		//	alert(s);
+
+			$.ajax ({
+				url: 'rest/korisnik/registruj',
+				type: 'POST',
+				data: s,
+				contentType: 'application/json',
+				dataType: 'json',
+				complete: function(data) {
+					if (data["status"] == 200) {
+						alert("Korisnik uspesno registrovan i ulogovan!");
+						window.location.href = "index.html";
+					} else if(data["status"] == 500){
+						alert("Postoji korisnik sa istim korisnickim imenom!");
+					} else {
+						alert("Neuspesna registracija!");
+					}
+				}
+			});
+		} else {
+			alert("Niste isparavno popunili sva polja!");
+		}
+				
+});
+	//odustaje se od registracije i vraca se na pocetnu stranicu
 	$("#odustani").click(function(event){
 		event.preventDefault();
 		window.location.href = "index.html";
 	})
-	
 });

@@ -1,16 +1,16 @@
 [ {
   "korisnicko_ime" : "admin",
   "lozinka" : "admin",
-  "ime" : "Pera",
-  "prezime" : "Peric",
+  "ime" : "Admir",
+  "prezime" : "Admirovic",
   "pol" : "muski",
   "uloga" : "Administrator" 
 },
 {
   "korisnicko_ime" : "admin2",
   "lozinka" : "admin2",
-  "ime" : "Tito",
-  "prezime" : "Tito",
+  "ime" : "Almir",
+  "prezime" : "Almirovic",
   "pol" : "muski",
   "uloga" : "Administrator" 
 }]

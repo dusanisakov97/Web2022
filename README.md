@@ -1,2 +1,2 @@
-# Web2022
- Projekat iz predmeta Veb Programiranje
+Putanja do servise po�inje sa /rest
+Servise stavljati u "services" paket

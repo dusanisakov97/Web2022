@@ -45,6 +45,23 @@ $(document).ready(function(){
 		}else {
 			document.getElementById("drugi").hidden = true;
 		}
+		
+		//slanje zahteva za login korisnika na server
+		$.ajax({
+			type: 'POST',
+			url: 'rest/korisnik/login/'+kor_ime+'/'+loz,
+			complete: function(data){
+				
+				if(data["status"] == 200){
+					window.location.href = "index.html";
+				}else if(data["status"] == 500){
+					alert("Pogrešno korisničko ime ili lozinka!");
+				}else {
+					console.log("Prijava neuspesna!");
+				}
+			}
+		})
+		
 	})
 	
 });
