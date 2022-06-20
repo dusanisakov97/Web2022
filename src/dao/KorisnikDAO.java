@@ -174,10 +174,10 @@ public class KorisnikDAO {
 				}
 			}
 			
-			ArrayList<Kupac> list22 = mapper.readValue(json, 
+			ArrayList<Kupac> list2 = mapper.readValue(json, 
 					new TypeReference<ArrayList<Kupac>>() {});
 			
-			for(Kupac kupac: list22) {
+			for(Kupac kupac: list2) {
 				this.korisnici.put(kupac.getKorisnicko_ime(), kupac);
 				System.out.println(kupac.toString());
 			}

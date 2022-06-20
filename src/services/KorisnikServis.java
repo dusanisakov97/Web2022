@@ -45,16 +45,10 @@ public class KorisnikServis {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response login(@PathParam("korisnicko_ime") String korisnicko_ime, @PathParam("lozinka") String lozinka, @Context HttpServletRequest req) {
 		
-		System.out.println("Proba");
-		
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		
-		System.out.println("AAAAAA");
 		
 		if(dao == null)
 			return Response.status(500).build();
-		
-		System.out.println("BBBBBBB");
 		
 		if(req.getSession().getAttribute("korisnik") != null)
 			req.getSession().invalidate();

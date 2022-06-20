@@ -3,17 +3,17 @@ package beans;
 import beans.Korisnik.Uloga;
 
 public class Trener extends Korisnik {
+	
+	public Trener() {
+		super();
+	}
 
 	public Trener(String korisnickoIme, String lozinka) {
 		super(korisnickoIme, lozinka);
-		//iznajmljeniAp = new ArrayList<Apartman>();
-	//	rezervacije = new ArrayList<Rezervacija>();
 	}
 	
 	public Trener(String ki, String loz, String ime, String prz, String pol) {
 		super(ki, loz, ime, prz, pol, Uloga.Trener);
-	//	iznajmljeniAp = new ArrayList<Apartman>();
-	//	rezervacije = new ArrayList<Rezervacija>();
 	}
 	
 	public Trener(Korisnik k) {
