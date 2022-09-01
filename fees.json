@@ -1,0 +1,21 @@
+[ "java.util.ArrayList", [ [ "domain.Fee", {
+  "id" : "73611536-fddb-40b1-b6fb-5561014160c0",
+  "months" : 1,
+  "price" : 3499.0,
+  "trainings" : 20
+} ], [ "domain.Fee", {
+  "id" : "e0bec6f0-34c1-476e-81f9-843909981510",
+  "months" : 1,
+  "price" : 2000.0,
+  "trainings" : 10
+} ], [ "domain.Fee", {
+  "id" : "945c8476-3d5a-4eb3-bc81-b38721c96f06",
+  "months" : 3,
+  "price" : 4000.0,
+  "trainings" : 40
+} ], [ "domain.Fee", {
+  "id" : "580a0817-9e17-45e5-b5dc-8fb3d3f1f007",
+  "months" : 6,
+  "price" : 5000.0,
+  "trainings" : 60
+} ] ] ]

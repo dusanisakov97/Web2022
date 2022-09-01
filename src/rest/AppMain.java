@@ -6,13 +6,18 @@ import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 
+import daos.FeeDAO;
+import daos.SportsObjectDAO;
+import daos.TrainingDAO;
 import daos.UserDAO;
 import domain.Coach;
 import domain.Customer;
 import domain.Manager;
+import domain.SportsObject;
 import domain.User;
 import dtos.LoginParams;
 import spark.Session;
@@ -21,20 +26,16 @@ public class AppMain {
 
 	
 	static public UserDAO userDAO = new UserDAO();
+	static public FeeDAO feeDAO = new FeeDAO();
+	static public TrainingDAO trainingDAO = new TrainingDAO();
+	static public SportsObjectDAO sportsObjectDAO = new SportsObjectDAO();
 	
 	static public Gson g = new Gson(); 
 
 	
 	public static void main(String[] args) throws Exception {
 		port(9001);
-
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
-		
-		// End-points
-		// Test
-		get("/test", (request, response) -> {	
-			return "Test";	
-		});
 		
 		post("/login", (req, res) -> {
 			res.type("application/json");
@@ -94,6 +95,24 @@ public class AppMain {
 			}
 			
 			return res;
+		});
+		
+		get("/fees", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(feeDAO.getFees());
+		});
+		
+		
+		get("/sports-object", (req, res) -> {
+			res.type("application/json");
+			UUID id = UUID.fromString(req.params("id"));
+			SportsObject o = sportsObjectDAO.getSportsObjectByID(id);
+			if(o == null) {
+				res.status(400);
+			} else {
+				res.status(200);
+			}
+			return o;
 		});
 	}
 

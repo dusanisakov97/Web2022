@@ -1,1 +1,10 @@
-[ "java.util.ArrayList", [ ] ]
+[ "java.util.ArrayList", [ [ "domain.Admin", {
+  "id" : "6a271409-0714-459d-a9ed-c3cbad2c74bf",
+  "firstName" : "Marko",
+  "lastName" : "Makrovic",
+  "birthday" : "10-10-2010",
+  "username" : "marko",
+  "gender" : "Muski",
+  "password" : "marko123",
+  "role" : "ADMIN"
+} ] ] ]

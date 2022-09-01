@@ -12,12 +12,35 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-</head>
-
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <body>
   <div id="aplication">
-    <router-view></router-view>
+  	<div class="ui secondary pointing menu">
+	  <a class="active item">
+	    Home
+	  </a>
+	  <a class="item">
+	    Messages
+	  </a>
+	  <a class="item">
+	    Friends
+	  </a>
+	  <div class="right menu">
+	    <a class="ui item">
+	      Logout
+	    </a>
+	  </div>
+	</div>
+	<div>
+  		<router-view></router-view>
+	</div>
+    	
   </div>
 
   <script src="app/blankPage.js"></script>
