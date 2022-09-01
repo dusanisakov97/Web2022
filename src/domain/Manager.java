@@ -1,5 +1,5 @@
 package domain;
 
-public class Manager {
+public class Manager extends User {
 
 }
