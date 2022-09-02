@@ -20,6 +20,7 @@ import domain.Manager;
 import domain.SportsObject;
 import domain.User;
 import dtos.LoginParams;
+import enums.Role;
 import spark.Session;
 
 public class AppMain {
@@ -52,10 +53,17 @@ public class AppMain {
 			return g.toJson(u);
 		});
 		
+		get("/logout", (req, res) -> {
+			res.type("application/json");
+			Session session = req.session(true);
+			session.invalidate();
+			return true;
+		});
+		
 		post("/customer", (req, res) -> {
 			res.type("applicaton/json");
 			Customer c = g.fromJson(req.body(), Customer.class);
-
+			c.setRole(Role.CUSTOMER);
 			User u = userDAO.addUser(c);
 			if(u == null) {
 				res.status(409);
@@ -70,6 +78,7 @@ public class AppMain {
 		post("/manager", (req, res) -> {
 			res.type("applicaton/json");
 			Manager c = g.fromJson(req.body(), Manager.class);
+			c.setRole(Role.MANAGER);
 
 			User u = userDAO.addUser(c);
 			if(u == null) {
@@ -78,13 +87,13 @@ public class AppMain {
 				res.status(201);
 				res.body(g.toJson(u));
 			}
-			
 			return res;
 		});
 		
 		post("/coach", (req, res) -> {
 			res.type("applicaton/json");
 			Coach c = g.fromJson(req.body(), Coach.class);
+			c.setRole(Role.COACH);
 
 			User u = userDAO.addUser(c);
 			if(u == null) {
@@ -114,6 +123,12 @@ public class AppMain {
 			}
 			return o;
 		});
+		
+		get("/session", (req, res)  -> {
+			res.type("application/json");
+			Session session = req.session(true);
+			User user = session.attribute("user");
+			return g.toJson(user);
+		});
 	}
-
 }

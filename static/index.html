@@ -22,7 +22,7 @@
 <body>
   <div id="aplication">
   	<div class="ui secondary pointing menu">
-	  <a class="active item">
+	  <a class="item" href="/#/home">
 	    Home
 	  </a>
 	  <a class="item">
@@ -32,9 +32,19 @@
 	    Friends
 	  </a>
 	  <div class="right menu">
-	    <a class="ui item">
-	      Logout
+	    <a v-if="!mode" class="ui item" href="/#/customer-registration">
+	      Registration
 	    </a>
+	    <a v-if="!mode" class="ui item" href="/#/login">
+	      Login
+	    </a>
+	     <a v-if="!!mode" class="ui item" href="/#/customer-registration">
+	      Profile
+	    </a>
+	    <button v-if="!!mode" class="ui item" v-on:click="logout">
+	      Logout
+	    </button>
+	    
 	  </div>
 	</div>
 	<div>
@@ -44,6 +54,9 @@
   </div>
 
   <script src="app/blankPage.js"></script>
+  <script src="app/login.js"></script>
+  <script src="app/home.js"></script>
+  <script src="app/registration.js"></script>
   <script src="app/app.js"></script>
 
 </body>

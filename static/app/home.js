@@ -1,8 +1,15 @@
-Vue.component("blank-page", {
+Vue.component("home", {
 	template: `
 		<div>
-			Blanc Page </br>
-			Server Response : {{text}}
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
+			Home </br>
 		</div>
 		
 	`,
@@ -11,10 +18,5 @@ Vue.component("blank-page", {
 			text: ""
 		}
 	}, 
-	mounted: function() {
-		axios.get("/test").then(response => {
-			console.log(response);
-			this.text = response.data;
-		})
-	}
+	
 })

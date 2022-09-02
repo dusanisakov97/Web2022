@@ -37,6 +37,7 @@ public class UserDAO implements Serializable<List<User>> {
 			}
 		}
 		users.add(newUser);
+		saveToJson(fileName, users);
 		
 		return newUser; 
 	}

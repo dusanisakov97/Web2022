@@ -7,4 +7,13 @@
   "gender" : "Muski",
   "password" : "marko123",
   "role" : "ADMIN"
+} ], [ "domain.Customer", {
+  "id" : null,
+  "firstName" : "1111",
+  "lastName" : "1111",
+  "birthday" : "2022-09-16",
+  "username" : "1111",
+  "gender" : "Zenski",
+  "password" : "1111",
+  "role" : "CUSTOMER"
 } ] ] ]
