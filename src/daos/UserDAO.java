@@ -2,9 +2,7 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import domain.Admin;
 import domain.User;
 import dtos.LoginParams;
 
@@ -48,6 +46,21 @@ public class UserDAO implements Serializable<List<User>> {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public User update(User c) {
+		for(User u: users) {
+			if(u.getUsername().equals(c.getUsername())) {
+				u.setFirstName(c.getFirstName());
+				u.setLastName(c.getLastName());
+				u.setPassword(c.getPassword());
+				u.setBirthday(c.getBirthday());
+				u.setGender(c.getGender());
+				saveToJson(fileName, users);
+				return u;
+			}
+		}
+		return null;
 	}
 	
 	

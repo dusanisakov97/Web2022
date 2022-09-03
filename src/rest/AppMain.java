@@ -2,6 +2,7 @@ package rest;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.put;
 import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
@@ -130,5 +131,20 @@ public class AppMain {
 			User user = session.attribute("user");
 			return g.toJson(user);
 		});
+		
+		get("/admin/users", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(userDAO.getUsers());
+			
+		});
+	
+		put("/user", (req, res) -> {
+			res.type("applicaton/json");
+			User c = g.fromJson(req.body(), User.class);
+			User user = userDAO.update(c);
+			return g.toJson(user);
+			
+		});
+		
 	}
 }

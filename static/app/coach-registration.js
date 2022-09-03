@@ -1,10 +1,10 @@
-Vue.component("customer-registration", {
+Vue.component("coach-registration", {
 	template: `
 		<div class="ui three column centered grid">
 			    <div class="column">
 					<form class="ui form" v-on:submit.prevent="submit">
 					<div class="ui centered grid field">
-						<h1>Registration customer</h1>
+						<h1>Form for add coach</h1>
 					</div>
 						<div class="field">
 		   					 <label>First name</label>
@@ -39,7 +39,6 @@ Vue.component("customer-registration", {
 					</form>
 			    </div>
 		</div>
-		
 		
 	`,
 	data: function() {
@@ -81,11 +80,11 @@ Vue.component("customer-registration", {
 				return;
 			}
 			
-			axios.post("/customer", this.user).then((response) => {
+			axios.post("/coach", this.user).then((response) => {
 				console.log(response);
 				if(response.status === 201) {
-					alert("Successful registration!");
-					window.location.href = "/#/login";
+					alert("Successful added coach!");
+					window.location.href = "/#/users";
 				} 
 			}).catch(() => {
 				alert("User with username already exists!");

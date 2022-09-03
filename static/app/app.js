@@ -1,6 +1,10 @@
 const blancPage = {template: '<blank-page></blank-page>'}
 const customerRegistration = {template: '<customer-registration></customer-registration>'}
+const coachRegistration = {template: '<coach-registration></coach-registration>'}
+const managerRegistration = {template: '<manager-registration></manager-registration>'}
+
 const login = {template: '<login></login>'}
+const users = {template: '<users></users>'}
 const home = {template: '<home></home>'}
 
 
@@ -10,7 +14,10 @@ const router = new VueRouter({
     { path: '/', component: home },
     { path: '/login', component: login },
     { path: '/customer-registration', component: customerRegistration },
+    { path: '/coach-registration', component: coachRegistration},
+    { path: '/manager-registration', component: managerRegistration},
     { path: '/home', component: home },
+    { path: '/users', component: users },
 
   ]
 });

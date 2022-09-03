@@ -16,4 +16,31 @@
   "gender" : "Zenski",
   "password" : "1111",
   "role" : "CUSTOMER"
+} ], [ "domain.Coach", {
+  "id" : null,
+  "firstName" : "dasdas",
+  "lastName" : "dsadas",
+  "birthday" : "2022-09-08",
+  "username" : "aadd",
+  "gender" : "Zenski",
+  "password" : "dadas",
+  "role" : "COACH"
+} ], [ "domain.Coach", {
+  "id" : null,
+  "firstName" : "aaaa",
+  "lastName" : "aaaa",
+  "birthday" : "2022-09-15",
+  "username" : "aaaa",
+  "gender" : "Muski",
+  "password" : "aaaa",
+  "role" : "COACH"
+} ], [ "domain.Manager", {
+  "id" : null,
+  "firstName" : "aaaaa",
+  "lastName" : "aaaaa",
+  "birthday" : "2022-09-08",
+  "username" : "aaaaaa",
+  "gender" : "Zenski",
+  "password" : "aaaaaa",
+  "role" : "MANAGER"
 } ] ] ]
