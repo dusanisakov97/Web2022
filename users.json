@@ -43,4 +43,13 @@
   "gender" : "Zenski",
   "password" : "aaaaaa",
   "role" : "MANAGER"
+} ], [ "domain.Customer", {
+  "id" : null,
+  "firstName" : "cutomer1",
+  "lastName" : "customer1",
+  "birthday" : "2022-09-30",
+  "username" : "customer",
+  "gender" : "Muski",
+  "password" : "customer",
+  "role" : "CUSTOMER"
 } ] ] ]

@@ -146,5 +146,22 @@ public class AppMain {
 			
 		});
 		
+		post("/sports-object", (req, res) -> {
+			res.type("applicaton/json");
+			SportsObject c = g.fromJson(req.body(), SportsObject.class);
+			c = sportsObjectDAO.add(c);
+			res.status(201);
+			return g.toJson(c);
+		});
+		
+		get("/sports-object", (req, res) -> {
+			res.type("applicaton/json");
+			return g.toJson(sportsObjectDAO.getSportsObjects());
+		});
+		
+		get("/fees", (req, res) -> {
+			res.type("applicaton/json");
+			return g.toJson(feeDAO.getFees());
+		});
 	}
 }

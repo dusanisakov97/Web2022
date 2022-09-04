@@ -25,4 +25,31 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 		}
 		return null;
 	}
+
+
+	public List<SportsObject> getSportsObjects() {
+		return sportsObjects;
+	}
+
+
+	public void setSportsObjects(List<SportsObject> sportsObjects) {
+		this.sportsObjects = sportsObjects;
+	}
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+	public SportsObject add(SportsObject c) {
+		this.sportsObjects.add(c);
+		return c;
+	}
+	
 }

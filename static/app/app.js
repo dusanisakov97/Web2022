@@ -4,8 +4,10 @@ const coachRegistration = {template: '<coach-registration></coach-registration>'
 const managerRegistration = {template: '<manager-registration></manager-registration>'}
 
 const login = {template: '<login></login>'}
+const fees = {template: '<fees></fees>'}
 const users = {template: '<users></users>'}
 const home = {template: '<home></home>'}
+const profile = {template: '<profile></profile>'}
 
 
 const router = new VueRouter({
@@ -18,7 +20,8 @@ const router = new VueRouter({
     { path: '/manager-registration', component: managerRegistration},
     { path: '/home', component: home },
     { path: '/users', component: users },
-
+    { path: '/fees', component: fees },
+    { path: '/profile', component: profile },
   ]
 });
 

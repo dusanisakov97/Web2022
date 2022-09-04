@@ -12,7 +12,7 @@ Vue.component("login", {
 		  				</div>
 		  				<div class="field">
 						    <label>Password</label>
-						    <input type="text" name="last-name" placeholder="Password" v-model="user.password">
+						    <input type="password" name="last-name" placeholder="Password" v-model="user.password">
 						</div>
 						<div class="ui field centered grid"> 
 							<button class="ui button" type="submit">Submit</button>

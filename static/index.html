@@ -37,6 +37,9 @@
 	  <a class="item" href="/#/add-object">
 	    Add Object
 	  </a>
+	   <a class="item" href="/#/fees" v-if="mode==='CUSTOMER'">
+	    Fees
+	  </a>
 	  
 	  <div class="right menu">
 	    <a v-if="!mode" class="ui item" href="/#/customer-registration">
@@ -45,7 +48,7 @@
 	    <a v-if="!mode" class="ui item" href="/#/login">
 	      Login
 	    </a>
-	     <a v-if="!!mode" class="ui item" href="/#/customer-registration">
+	     <a v-if="!!mode" class="ui item" href="/#/profile">
 	      Profile
 	    </a>
 	    <button v-if="!!mode" class="ui item" v-on:click="logout">
@@ -64,6 +67,8 @@
   <script src="app/users.js"></script>
   <script src="app/login.js"></script>
   <script src="app/home.js"></script>
+  <script src="app/fees.js"></script>
+  <script src="app/profile.js"></script>
   <script src="app/customer-registration.js"></script>
   <script src="app/manager-registration.js"></script>
   <script src="app/coach-registration.js"></script>
