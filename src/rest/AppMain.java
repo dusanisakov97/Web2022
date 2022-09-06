@@ -3,6 +3,8 @@ package rest;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.delete;
+
 import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
@@ -174,6 +176,10 @@ public class AppMain {
 			return g.toJson(userDAO.getFreeManagers());
 		});
 		
-		
+		delete("/user", (req, res) -> {
+			res.type("applicaton/json");
+			UUID id = UUID.fromString(req.queryParams("id"));
+			return g.toJson(userDAO.delete(id));
+		});
 	}
 }

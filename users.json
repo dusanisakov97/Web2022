@@ -17,6 +17,16 @@
   "gender" : "Zenski",
   "password" : "manager",
   "role" : "MANAGER",
-  "deleted" : false,
+  "deleted" : true,
   "sportsObjectID" : null
+} ], [ "domain.Customer", {
+  "id" : "8026d13e-fc9a-4b19-9f45-217a86979b92",
+  "firstName" : "customer",
+  "lastName" : "customer",
+  "birthday" : "2022-09-22",
+  "username" : "customer",
+  "gender" : "Zenski",
+  "password" : "customer",
+  "role" : "CUSTOMER",
+  "deleted" : false
 } ] ] ]

@@ -2,6 +2,7 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.google.gson.JsonElement;
 
@@ -51,7 +52,7 @@ public class UserDAO implements Serializable<List<User>> {
 				ret.add(user);
 			}
 		}
-		return users;
+		return ret;
 	}
 
 	public void setUsers(List<User> users) {
@@ -85,6 +86,22 @@ public class UserDAO implements Serializable<List<User>> {
 		}
 		return ret;
 	}
+
+	public User delete(UUID id) {
+		User user = getUserByID(id);
+		if(user != null) {
+			user.setDeleted(true);
+			saveToJson(fileName, users);
+		}
+		return user;
+	}
 	
-	
+	public User getUserByID(UUID id) {
+		for (User user : users) {
+			if(user.getId().equals(id)) {
+				return user;
+			}
+		}
+		return null;
+	}
 }
