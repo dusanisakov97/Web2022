@@ -1,1 +1,19 @@
-[ "java.util.ArrayList", [ ] ]
+[ "java.util.ArrayList", [ [ "domain.SportsObject", {
+  "id" : "d343b975-9746-4fc0-aa67-336732d3ace9",
+  "name" : "dsada",
+  "type" : "Sportski centar",
+  "working" : true,
+  "location" : [ "domain.Location", {
+    "street" : "dsa",
+    "city" : "dsa",
+    "zipCode" : 1
+  } ],
+  "image" : "",
+  "averageMark" : 0.0,
+  "sum" : 0.0,
+  "counter" : 0,
+  "startWorking" : "01:19",
+  "endWorking" : "12:02",
+  "deleted" : false,
+  "trainings" : [ "java.util.ArrayList", [ ] ]
+} ] ] ]

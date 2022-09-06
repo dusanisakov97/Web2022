@@ -13,7 +13,6 @@ import com.google.gson.Gson;
 
 import daos.FeeDAO;
 import daos.SportsObjectDAO;
-import daos.TrainingDAO;
 import daos.UserDAO;
 import domain.Coach;
 import domain.Customer;
@@ -29,7 +28,6 @@ public class AppMain {
 	
 	static public UserDAO userDAO = new UserDAO();
 	static public FeeDAO feeDAO = new FeeDAO();
-	static public TrainingDAO trainingDAO = new TrainingDAO();
 	static public SportsObjectDAO sportsObjectDAO = new SportsObjectDAO();
 	
 	static public Gson g = new Gson(); 
@@ -65,6 +63,7 @@ public class AppMain {
 			res.type("applicaton/json");
 			Customer c = g.fromJson(req.body(), Customer.class);
 			c.setRole(Role.CUSTOMER);
+			c.setId(UUID.randomUUID());
 			User u = userDAO.addUser(c);
 			if(u == null) {
 				res.status(409);
@@ -80,6 +79,7 @@ public class AppMain {
 			res.type("applicaton/json");
 			Manager c = g.fromJson(req.body(), Manager.class);
 			c.setRole(Role.MANAGER);
+			c.setId(UUID.randomUUID());
 
 			User u = userDAO.addUser(c);
 			if(u == null) {
@@ -95,6 +95,7 @@ public class AppMain {
 			res.type("applicaton/json");
 			Coach c = g.fromJson(req.body(), Coach.class);
 			c.setRole(Role.COACH);
+			c.setId(UUID.randomUUID());
 
 			User u = userDAO.addUser(c);
 			if(u == null) {
@@ -149,6 +150,10 @@ public class AppMain {
 		post("/sports-object", (req, res) -> {
 			res.type("applicaton/json");
 			SportsObject c = g.fromJson(req.body(), SportsObject.class);
+			c.setId(UUID.randomUUID());
+			c.setAverageMark(Double.valueOf(0));
+			c.setCounter(0);
+			c.setSum(Double.valueOf(0));
 			c = sportsObjectDAO.add(c);
 			res.status(201);
 			return g.toJson(c);
@@ -163,5 +168,12 @@ public class AppMain {
 			res.type("applicaton/json");
 			return g.toJson(feeDAO.getFees());
 		});
+		
+		get("/managers/sports-object", (req, res) -> {
+			res.type("applicaton/json");
+			return g.toJson(userDAO.getFreeManagers());
+		});
+		
+		
 	}
 }

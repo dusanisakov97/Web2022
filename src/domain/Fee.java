@@ -7,16 +7,18 @@ public class Fee {
 	private UUID id;
 	private Integer months;
 	private Double price;
+	private String name;
 	private Integer trainings;
 	public Fee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Fee(UUID id, Integer months, Double price, Integer trainings) {
+	public Fee(UUID id, Integer months, Double price, String name, Integer trainings) {
 		super();
 		this.id = id;
 		this.months = months;
 		this.price = price;
+		this.name = name;
 		this.trainings = trainings;
 	}
 	public UUID getId() {
@@ -42,6 +44,12 @@ public class Fee {
 	}
 	public void setTrainings(Integer trainings) {
 		this.trainings = trainings;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

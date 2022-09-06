@@ -13,6 +13,7 @@ public class User {
 	private String gender;
 	private String password;
 	private Role role;
+	private boolean deleted;
 	
 	
 	public User() {
@@ -111,6 +112,16 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	

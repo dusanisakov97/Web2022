@@ -3,9 +3,8 @@ package domain;
 public class Location {
 	
 	private String street;
-	private int  number;
 	private String city;
-	private String country;
+	private Integer zipCode;
 	
 	
 	
@@ -18,13 +17,16 @@ public class Location {
 
 
 
-	public Location(String street, int number, String city, String country) {
+
+
+	public Location(String street, String city, Integer zipCode) {
 		super();
 		this.street = street;
-		this.number = number;
 		this.city = city;
-		this.country = country;
+		this.zipCode = zipCode;
 	}
+
+
 
 
 
@@ -41,22 +43,6 @@ public class Location {
 	}
 
 
-
-
-	public int getNumber() {
-		return number;
-	}
-
-
-
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-
-
-
 	public String getCity() {
 		return city;
 	}
@@ -71,17 +57,23 @@ public class Location {
 
 
 
-	public String getCountry() {
-		return country;
+
+
+	public Integer getZipCode() {
+		return zipCode;
 	}
 
 
 
 
-	public void setCountry(String country) {
-		this.country = country;
+
+
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
 	}
-	
+
+
+
 	
 	
 

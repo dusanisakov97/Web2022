@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.google.gson.JsonElement;
+
+import domain.Manager;
 import domain.SportsObject;
 
 public class SportsObjectDAO implements Serializable<List<SportsObject>> {
@@ -28,7 +31,13 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 
 
 	public List<SportsObject> getSportsObjects() {
-		return sportsObjects;
+		List<SportsObject> ret = new ArrayList<>();
+		for (SportsObject sportsObject : this.sportsObjects) {
+			if(!sportsObject.isDeleted()) {
+				ret.add(sportsObject);
+			}
+		}
+		return ret;
 	}
 
 
@@ -49,7 +58,9 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 
 	public SportsObject add(SportsObject c) {
 		this.sportsObjects.add(c);
+		saveToJson(fileName, sportsObjects);
 		return c;
 	}
+
 	
 }

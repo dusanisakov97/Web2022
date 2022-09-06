@@ -6,50 +6,17 @@
   "username" : "marko",
   "gender" : "Muski",
   "password" : "marko123",
-  "role" : "ADMIN"
-} ], [ "domain.Customer", {
-  "id" : null,
-  "firstName" : "1111",
-  "lastName" : "1111",
-  "birthday" : "2022-09-16",
-  "username" : "1111",
-  "gender" : "Zenski",
-  "password" : "1111",
-  "role" : "CUSTOMER"
-} ], [ "domain.Coach", {
-  "id" : null,
-  "firstName" : "dasdas",
-  "lastName" : "dsadas",
-  "birthday" : "2022-09-08",
-  "username" : "aadd",
-  "gender" : "Zenski",
-  "password" : "dadas",
-  "role" : "COACH"
-} ], [ "domain.Coach", {
-  "id" : null,
-  "firstName" : "aaaa",
-  "lastName" : "aaaa",
-  "birthday" : "2022-09-15",
-  "username" : "aaaa",
-  "gender" : "Muski",
-  "password" : "aaaa",
-  "role" : "COACH"
+  "role" : "ADMIN",
+  "deleted" : false
 } ], [ "domain.Manager", {
-  "id" : null,
-  "firstName" : "aaaaa",
-  "lastName" : "aaaaa",
-  "birthday" : "2022-09-08",
-  "username" : "aaaaaa",
+  "id" : "5c6dfa72-e31b-491c-b357-4153c6fd828f",
+  "firstName" : "Manager",
+  "lastName" : "Manager",
+  "birthday" : "2022-10-06",
+  "username" : "manager",
   "gender" : "Zenski",
-  "password" : "aaaaaa",
-  "role" : "MANAGER"
-} ], [ "domain.Customer", {
-  "id" : null,
-  "firstName" : "cutomer1",
-  "lastName" : "customer1",
-  "birthday" : "2022-09-30",
-  "username" : "customer",
-  "gender" : "Muski",
-  "password" : "customer",
-  "role" : "CUSTOMER"
+  "password" : "manager",
+  "role" : "MANAGER",
+  "deleted" : false,
+  "sportsObjectID" : null
 } ] ] ]

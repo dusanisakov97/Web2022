@@ -3,8 +3,12 @@ package daos;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonElement;
+
+import domain.Manager;
 import domain.User;
 import dtos.LoginParams;
+import enums.Role;
 
 public class UserDAO implements Serializable<List<User>> {
 	
@@ -41,6 +45,12 @@ public class UserDAO implements Serializable<List<User>> {
 	}
 
 	public List<User> getUsers() {
+		List<User> ret = new ArrayList<>();
+		for (User user : this.users) {
+			if(!user.isDeleted()) {
+				ret.add(user);
+			}
+		}
 		return users;
 	}
 
@@ -61,6 +71,19 @@ public class UserDAO implements Serializable<List<User>> {
 			}
 		}
 		return null;
+	}
+
+	public List<Manager> getFreeManagers() {
+		List<Manager> ret = new ArrayList<>();
+		for (User user : getUsers()) {
+			if(user instanceof Manager) {
+				Manager manager = (Manager) user;
+				if(manager.getSportsObjectID() == null) {
+					ret.add(manager);
+				}
+			}
+		}
+		return ret;
 	}
 	
 	

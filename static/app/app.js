@@ -8,6 +8,7 @@ const fees = {template: '<fees></fees>'}
 const users = {template: '<users></users>'}
 const home = {template: '<home></home>'}
 const profile = {template: '<profile></profile>'}
+const addObject = {template: '<add-object></add-object>'}
 
 
 const router = new VueRouter({
@@ -22,6 +23,7 @@ const router = new VueRouter({
     { path: '/users', component: users },
     { path: '/fees', component: fees },
     { path: '/profile', component: profile },
+	{ path: '/add-object', component: addObject },
   ]
 });
 
