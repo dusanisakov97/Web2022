@@ -186,9 +186,17 @@ public class AppMain {
 		post("/customer/fee", (req, res) -> {
 			res.type("applicaton/json");
 			Fee c = g.fromJson(req.body(), Fee.class);
-		
+			Session session = req.session(true);
+			
+			Customer cus = session.attribute("user");
+			if(c == null) {
+				res.status(403);
+			} else {
+				Customer customer = userDAO.getCustomerByID(c.getId());
+				customer.setActiveFee(c);
+			}
 
-			return g.toJson()
+			return g.toJson(cus);
 		});
 	}
 }

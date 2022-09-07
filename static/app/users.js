@@ -1,8 +1,32 @@
 Vue.component("users", {
 	template: `
 	<div class="ui container">
+		<div class="ui form">
+			<div class="four fields">
+				<div class="field">
+					<label>First name</label>
+					<input type="text" placeholder="First Name" v-model="search.firstName">
+				</div>
+				<div class="field">
+					<label>Last name</label>
+					<input type="text" placeholder="Last Name" v-model="search.lastName">
+				</div>
+				<div class="field">
+					<label>Username:</label>
+					<input type="text" placeholder="Username" v-model="search.username">
+				</div>
+				<div class="field">
+					<label>&nbsp;</label>
+					<button type="buttom" class="ui green button" v-on:click="onSearch">Search </button>
+				</div>
+			</div>
+		</div>
+
+
+
+
 		<div class="ui four cards">
-		  <div class="card" v-for="u in users">
+		  <div class="card" v-for="u in showUsers">
 		    <div class="content">
 		      <div class="header">{{u.firstName + ' ' + u.lastName}}</div>
 		      <div class="meta">
@@ -35,13 +59,20 @@ Vue.component("users", {
 	data: function() {
 		return {
 			users: [],
-			mode: null
+			mode: null,
+			search: {
+				firstName: "",
+				lastName: "",
+				username: ""
+			},
+			showUsers: []
 		}
 	},
 	beforeCreate() {
 		axios.get("/session").then(response => this.mode = response.data.role);
 		axios.get("/admin/users").then((response) => {
 			this.users = response.data;
+			this.showUsers = response.data;
 		});
 	},
 	methods: {
@@ -57,6 +88,25 @@ Vue.component("users", {
 					this.users = response.data;
 				});
 			});
+		},
+		onSearch() {
+			this.showUsers = [];
+
+			for(var user of this.users) {
+				if(user.firstName.toLowerCase().indexOf(this.search.firstName.trim()) === -1) {
+					continue;
+				}
+
+				if(user.lastName.toLowerCase().indexOf(this.search.lastName.trim()) === -1) {
+					continue;
+				}
+
+				if(user.username.toLowerCase().indexOf(this.search.username.trim()) === -1) {
+					continue;
+				}
+
+				this.showUsers.push(user);
+			} 
 		}
-	}
+	}, 
 })

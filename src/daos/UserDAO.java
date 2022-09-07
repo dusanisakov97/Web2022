@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.google.gson.JsonElement;
 
+import domain.Customer;
 import domain.Manager;
 import domain.User;
 import dtos.LoginParams;
@@ -100,6 +101,18 @@ public class UserDAO implements Serializable<List<User>> {
 		for (User user : users) {
 			if(user.getId().equals(id)) {
 				return user;
+			}
+		}
+		return null;
+	}
+
+	public Customer getCustomerByID(UUID id) {
+		for (User user : getUsers()) {
+			if(user instanceof Customer) {
+				Customer customer = (Customer) user;
+				if(customer.getId().equals(id)) {
+					return customer;
+				}
 			}
 		}
 		return null;
