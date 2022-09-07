@@ -2,23 +2,54 @@ Vue.component("users", {
 	template: `
 	<div class="ui container">
 		<div class="ui form">
-			<div class="four fields">
+			<div class="three fields">
 				<div class="field">
 					<label>First name</label>
-					<input type="text" placeholder="First Name" v-model="search.firstName">
+					<input type="text" placeholder="First Name" v-model="search.firstName" v-on:input="onSearch">
 				</div>
 				<div class="field">
 					<label>Last name</label>
-					<input type="text" placeholder="Last Name" v-model="search.lastName">
+					<input type="text" placeholder="Last Name" v-model="search.lastName" v-on:input="onSearch">
 				</div>
 				<div class="field">
 					<label>Username:</label>
-					<input type="text" placeholder="Username" v-model="search.username">
+					<input type="text" placeholder="Username" v-model="search.username" v-on:input="onSearch">
+				</div>
+			</div>
+		</div>
+
+		<div class="ui form">
+			<div class="three fields">
+				
+				<div class="field">
+					<label>Sort</label>
+					<select type="text" v-model="search.role" v-on:change="onSearch">
+						<option value="">All</option>
+						<option value="1">Decreasing by First Name</option>
+						<option value="2">Decreasing by Last Name</option>
+						<option value="3">Decreasing by Username</option>
+					</select>
 				</div>
 				<div class="field">
-					<label>&nbsp;</label>
-					<button type="buttom" class="ui green button" v-on:click="onSearch">Search </button>
+					<label>Role</label>
+					<select type="text" v-model="search.role" v-on:change="onSearch">
+						<option value="">All</option>
+						<option value="ADMIN">Admin</option>
+						<option value="CUSTOMER">Customer</option>
+						<option value="MANAGER">Manager</option>
+						<option value="COACH">Coach</option>
+					</select>
 				</div>
+				<div class="field" v-if="search.role==='CUSTOMER'">
+					<label>Type (Customer)</label>
+					<select type="text" v-model="search.type" v-on:change="onSearch">
+						<option value="">All</option>
+						<option value="GOLD">Gold</option>
+						<option value="SILVER">Silver</option>
+						<option value="BRONZE">Bronze</option>
+					</select>
+				</div>
+				
 			</div>
 		</div>
 
@@ -63,7 +94,10 @@ Vue.component("users", {
 			search: {
 				firstName: "",
 				lastName: "",
-				username: ""
+				username: "",
+				role: "",
+				type: "",
+				sort: ""
 			},
 			showUsers: []
 		}
@@ -91,7 +125,7 @@ Vue.component("users", {
 		},
 		onSearch() {
 			this.showUsers = [];
-
+			console.log(this.search)
 			for(var user of this.users) {
 				if(user.firstName.toLowerCase().indexOf(this.search.firstName.trim()) === -1) {
 					continue;
@@ -105,8 +139,12 @@ Vue.component("users", {
 					continue;
 				}
 
+				if(this.search.role != "" && user.role !== this.search.role){
+					continue;
+				}
+
 				this.showUsers.push(user);
 			} 
-		}
+		}, 
 	}, 
 })
