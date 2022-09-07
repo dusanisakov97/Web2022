@@ -18,6 +18,7 @@ import daos.SportsObjectDAO;
 import daos.UserDAO;
 import domain.Coach;
 import domain.Customer;
+import domain.Fee;
 import domain.Manager;
 import domain.SportsObject;
 import domain.User;
@@ -180,6 +181,14 @@ public class AppMain {
 			res.type("applicaton/json");
 			UUID id = UUID.fromString(req.queryParams("id"));
 			return g.toJson(userDAO.delete(id));
+		});
+		
+		post("/customer/fee", (req, res) -> {
+			res.type("applicaton/json");
+			Fee c = g.fromJson(req.body(), Fee.class);
+		
+
+			return g.toJson()
 		});
 	}
 }
