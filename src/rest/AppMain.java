@@ -67,6 +67,8 @@ public class AppMain {
 			Customer c = g.fromJson(req.body(), Customer.class);
 			c.setRole(Role.CUSTOMER);
 			c.setId(UUID.randomUUID());
+			c.setCustomerType(null);
+			c.setPoints(0);
 			User u = userDAO.addUser(c);
 			if(u == null) {
 				res.status(409);
@@ -126,7 +128,7 @@ public class AppMain {
 			} else {
 				res.status(200);
 			}
-			return o;
+			return g.toJson(o);
 		});
 		
 		get("/session", (req, res)  -> {
@@ -162,7 +164,7 @@ public class AppMain {
 			return g.toJson(c);
 		});
 		
-		get("/sports-object", (req, res) -> {
+		get("/sports-objects", (req, res) -> {
 			res.type("applicaton/json");
 			return g.toJson(sportsObjectDAO.getSportsObjects());
 		});
