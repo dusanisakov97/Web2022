@@ -129,7 +129,7 @@ public class AppMain {
 		
 		get("/sports-object", (req, res) -> {
 			res.type("application/json");
-			UUID id = UUID.fromString(req.params("id"));
+			UUID id = UUID.fromString(req.queryParams("id"));
 			SportsObject o = sportsObjectDAO.getSportsObjectByID(id);
 			if(o == null) {
 				res.status(400);

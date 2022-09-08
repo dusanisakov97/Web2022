@@ -1,8 +1,32 @@
 Vue.component("home", {
 	template: `
 	<div class="ui container">
+		<div class="ui form">
+			<div class="four fields">
+				<div class="field">
+					<label>Name</label>
+					<input type="text" placeholder="Name" v-model="search.name" v-on:input="onSearch">
+				</div>
+				<div class="field">
+					<label>Type</label>
+					<input type="text" placeholder="Type" v-model="search.type" v-on:input="onSearch">
+				</div>
+				<div class="field">
+					<label>Location</label>
+					<input type="text" placeholder="Location" v-model="search.location" v-on:input="onSearch">
+				</div>
+				<div class="field">
+					<label>Min average mark</label>
+					<input type="number" placeholder="Min" v-model="search.minAverageMark" v-on:input="onSearch">
+				</div>
+				<div class="field">
+					<label>Max average mark</label>
+					<input type="number" placeholder="Max" v-model="search.maxAverageMark" v-on:input="onSearch">
+				</div>
+			</div>
+		</div>
 		<div class="ui link cards">
-			<a class="card" v-for="o in sportsObjects" :href="'#/object/' + o.id">
+			<a class="card" v-for="o in sportsObjects" :href="'#/single-object/' + o.id">
 				<div class="image">
 					<img :src="o.image">
 				</div>
@@ -46,11 +70,23 @@ Vue.component("home", {
 	data: function() {
 		return {
 			mode: "",
-			sportsObjects: []
+			sportsObjects: [],
+			search: {
+				name: "",
+				type: "",
+				location: "",
+				minAverageMark: null,
+				maxAvarageMark: null
+			}
 		}
 	},
 	mounted(){
 		axios.get("/sports-objects").then(response => this.sportsObjects = response.data);
 	},
+	methods: {
+		onSearch: function(){
+			
+		}
+	}
 	
 })
