@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class SportsObject {
 	private UUID id;
 	private String name;
@@ -19,6 +21,8 @@ public class SportsObject {
 	private boolean deleted;
 	
 	private List<Training> trainings = new ArrayList<>();
+	
+	private UUID managerID;
 	
 	
 	public SportsObject() {
@@ -167,6 +171,17 @@ public class SportsObject {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+
+	public UUID getManagerID() {
+		return managerID;
+	}
+
+
+	public void setManagerID(UUID managerID) {
+		this.managerID = managerID;
+	}
+
 
 	
 	

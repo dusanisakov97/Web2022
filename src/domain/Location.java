@@ -15,19 +15,12 @@ public class Location {
 	}
 
 
-
-
-
-
 	public Location(String street, String city, Integer zipCode) {
 		super();
 		this.street = street;
 		this.city = city;
 		this.zipCode = zipCode;
 	}
-
-
-
 
 
 

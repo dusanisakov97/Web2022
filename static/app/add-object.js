@@ -43,10 +43,20 @@ Vue.component("add-object", {
                             <label>End Working</label>
                             <input type="time" v-model="sportsObject.endWorking">
                         </div>
-                        <select name="last-name" placeholder="Type" v-model="sportsObject.managerID">
-                            <option value="m.id" v-for="m in managers">{{m.firstName + ' ' + m.lastName}}</option>
-                           
-                        </select>
+                        <div class="field">
+                            <label>Manager</label>
+                            <select name="last-name" placeholder="Type" v-model="sportsObject.managerID" style="padding: 10px">
+                            <option :value="m.id" v-for="m in managers">{{m.firstName + ' ' + m.lastName}}</option>
+                        </select>                        </div>
+                        
+                        <div class="field" v-if="sportsObject.image !== null" style="padding: 20px">
+                            <div >
+                            <img class="preview" :src="sportsObject.image" height="200" width="200">
+                            </div>
+					    </div>
+                        <div class="btn  btn-sm  w-25">
+                            <input type="file" @change="uploadImage" name="image" id="image" accept="image/*"/>
+                        </div>
 
 						<div class="ui field centered grid"> 
 							<button class="ui button" type="submit">Submit</button>
@@ -71,48 +81,80 @@ Vue.component("add-object", {
                 },
 				image: "",
                 startWorking: "",
-                endWorking: ""
+                endWorking: "",
+                managerID: "",
 			},
             managers: []
 		}
 	}, mounted() {
+        console.log("pozvali su ")
         axios.get("/managers/sports-object").then(response => this.managers = response.data);
     },
 	methods: {
 		submit: function() {
-			// if (this.user.firstName.length < 4) {
-			// 	alert("Too short first name!");
-			// 	return;
-			// }
-			// if (this.user.lastName.length < 4) {
-			// 	alert("Too short last name!");
-			// 	return;
-			// }
-			// if (this.user.username.length < 4) {
-			// 	alert("Too short username!");
-			// 	return;
-			// }
-			// if (this.user.password.length < 4) {
-			// 	alert("Too short password!");
-			// 	return;
-			// }
-			// if (this.user.birthday === null) {
-			// 	alert("Pick the date");
-			// 	return;
-			// }
-			// if (this.user.gender.length == 0) {
-			// 	alert("Pick the gender!");
-			// 	return;
-			// }
+			if (this.sportsObject.name.length < 4) {
+				alert("Too short name!");
+				return;
+			}
+			if (this.sportsObject.type.length < 4) {
+				alert("Too short type!");
+				return;
+			}
+			if (this.sportsObject.working.length === "") {
+				alert("Pick does object work!");
+				return;
+			}
+			if (this.sportsObject.location.street.length < 4) {
+				alert("Too short street!");
+				return;
+			}
+			if (this.sportsObject.location.city.length < 2) {
+				alert("Too short city!");
+				return;
+			}
+            if (this.sportsObject.location.city.zipCode <= 0) {
+				alert("Zip code must be positiv number!");
+				return;
+			}
+            if (this.sportsObject.startWorking.length === "") {
+				alert("Pick the start working time!");
+				return;
+			}
+            if (this.sportsObject.endWorking === "") {
+				alert("Pick the end wotking time!");
+				return;
+			}
+            if (this.sportsObject.endWorking === "") {
+				alert("Pick the end wotking time!");
+				return;
+			}
+			if (this.sportsObject.image.length == "") {
+				alert("Upload the image!");
+				return;
+			}
+
 			
 			axios.post("/sports-object", this.sportsObject).then((response) => {
 				if(response.status === 201) {
 					alert("Successful added new sports object!");
 					window.location.href = "/#/home";
 				} 
-			}).catch(() => {
-				alert("User with username already exists!");
-			})
-		}
+			});
+		},
+        uploadImage(event) {
+            var img = event.target.files[0];
+            var formData = new FormData();
+            formData.append("image", img);
+    
+            axios.post('/image', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }).then(response => {
+                      this.sportsObject.image = response.data;
+            });
+          },
+
+
 	}
 })

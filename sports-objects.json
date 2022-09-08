@@ -1,19 +1,20 @@
 [ "java.util.ArrayList", [ [ "domain.SportsObject", {
-  "id" : "d343b975-9746-4fc0-aa67-336732d3ace9",
-  "name" : "dsada",
-  "type" : "Sportski centar",
+  "id" : "473c3964-fd0f-4549-bd45-1e55d3693ef2",
+  "name" : "Teretana 1",
+  "type" : "Teretana",
   "working" : true,
   "location" : [ "domain.Location", {
-    "street" : "dsa",
-    "city" : "dsa",
-    "zipCode" : 1
+    "street" : "Balzakova",
+    "city" : "Novi sad",
+    "zipCode" : 21000
   } ],
-  "image" : "",
+  "image" : "data/img/ec846771-03f3-466a-89e4-1ac7cc9a1557.jpg",
   "averageMark" : 0.0,
   "sum" : 0.0,
   "counter" : 0,
-  "startWorking" : "01:19",
-  "endWorking" : "12:02",
+  "startWorking" : "10:00",
+  "endWorking" : "17:00",
   "deleted" : false,
-  "trainings" : [ "java.util.ArrayList", [ ] ]
+  "trainings" : [ "java.util.ArrayList", [ ] ],
+  "managerID" : "5c6dfa72-e31b-491c-b357-4153c6fd828f"
 } ] ] ]

@@ -9,7 +9,14 @@ import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
+
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 
@@ -25,6 +32,7 @@ import domain.User;
 import dtos.LoginParams;
 import enums.Role;
 import spark.Session;
+import spark.utils.IOUtils;
 
 public class AppMain {
 
@@ -160,6 +168,9 @@ public class AppMain {
 			c.setCounter(0);
 			c.setSum(Double.valueOf(0));
 			c = sportsObjectDAO.add(c);
+			Manager manager = (Manager) userDAO.getUserByID(c.getManagerID());
+			manager.setSportsObjectID(c.getId());
+			userDAO.update(manager);
 			res.status(201);
 			return g.toJson(c);
 		});
@@ -199,6 +210,31 @@ public class AppMain {
 			}
 
 			return g.toJson(cus);
+		});
+		
+
+		post("/image", (request, response) -> {
+			request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("static/data/profile"));					
+			Session ss = request.session(true);			
+			Part uploadedFile = request.raw().getPart("image");
+			String id = UUID.randomUUID().toString();
+			Path out = Paths.get("static/data/img/" + id + ".jpg");
+
+		    try(final java.io.InputStream in = uploadedFile.getInputStream()){
+
+		    	OutputStream outStream = new FileOutputStream(out.toString());		 
+		    	IOUtils.copy(in, outStream);
+		    	
+		    	outStream.close();
+		    	uploadedFile.delete();
+		    	in.close();
+		    	 	
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		    }
+		       
+		    return "data/img/" + id + ".jpg";
+			
 		});
 	}
 }

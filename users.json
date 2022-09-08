@@ -17,6 +17,6 @@
   "gender" : "Zenski",
   "password" : "manager",
   "role" : "MANAGER",
-  "deleted" : true,
-  "sportsObjectID" : null
+  "deleted" : false,
+  "sportsObjectID" : "473c3964-fd0f-4549-bd45-1e55d3693ef2"
 } ] ] ]

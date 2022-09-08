@@ -3,7 +3,9 @@ Vue.component("home", {
 	<div class="ui container">
 		<div class="ui link cards">
 			<a class="card" v-for="o in sportsObjects" :href="'#/object/' + o.id">
-				
+				<div class="image">
+					<img :src="o.image">
+				</div>
 				<div class="content">
 					<div class="header">{{o.name}}</div>
 					<div class="meta">
