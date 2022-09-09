@@ -3,43 +3,45 @@ Vue.component("single-object", {
 		<div class="ui container" v-if="sportsObject != null">
 			<div class="ui grid">
 				<div class="four wide column">
-					<div class="card">
-						<div class="image">
-							<img :src="sportsObject.image">
-						</div>
-						<div class="content">
-							<div class="header">{{sportsObject.name}}</div>
-							<div class="meta">
-							<a>{{sportsObject.type}}</a>
-							</div>
-							<div class="description">
-							Location: {{sportsObject.location.street + ', ' + sportsObject.location.city + ', ' + sportsObject.location.zipCode}}
-							</div>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-							<i class="check icon" v-if="sportsObject.working"></i>
-							<i class="close	 icon" v-if="!sportsObject.working"></i>
+					<div class="ui one cards">
 
-							</span>
-							<span>
-							<i class="star icon"></i>
-							{{sportsObject.averageMark}}
-							</span>
-						</div>
-						<div class="extra content">
-							<span class="right floated">
-							<i class="time icon"></i>
+						<div class="card">
+							<div class="image">
+								<img :src="sportsObject.image">
+							</div>
+							<div class="content">
+								<div class="header">{{sportsObject.name}}</div>
+								<div class="meta">
+								<a>{{sportsObject.type}}</a>
+								</div>
+								<div class="description">
+								Location: {{sportsObject.location.street + ', ' + sportsObject.location.city + ', ' + sportsObject.location.zipCode}}
+								</div>
+							</div>
+							<div class="extra content">
+								<span class="right floated">
+								<i class="check icon" v-if="sportsObject.working"></i>
+								<i class="close	 icon" v-if="!sportsObject.working"></i>
 
-							{{sportsObject.endWorking}}
-							</span>
-							<span>
-							<i class="time icon"></i>
-							{{sportsObject.startWorking}}
-							</span>
+								</span>
+								<span>
+								<i class="star icon"></i>
+								{{sportsObject.averageMark}}
+								</span>
+							</div>
+							<div class="extra content">
+								<span class="right floated">
+								<i class="time icon"></i>
+
+								{{sportsObject.endWorking}}
+								</span>
+								<span>
+								<i class="time icon"></i>
+								{{sportsObject.startWorking}}
+								</span>
+							</div>
 						</div>
 					</div>
-				
 				</div>
 				<div class="twelve wide column"></div>
 				

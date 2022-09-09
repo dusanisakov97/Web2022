@@ -23,11 +23,15 @@ Vue.component("users", {
 				
 				<div class="field">
 					<label>Sort</label>
-					<select type="text" v-model="search.role" v-on:change="onSearch">
-						<option value="">All</option>
-						<option value="1">Decreasing by First Name</option>
-						<option value="2">Decreasing by Last Name</option>
-						<option value="3">Decreasing by Username</option>
+					<select type="text" v-model="search.sort" v-on:change="onSearch">
+						<option value="0">Random</option>
+						<option value="4">Decreasing by First Name</option>
+						<option value="5">Decreasing by Last Name</option>
+						<option value="6">Decreasing by Username</option>
+						<option value="1">Increasing by First Name</option>
+						<option value="2">Increasing by Last Name</option>
+						<option value="3">Increasing by Username</option>
+
 					</select>
 				</div>
 				<div class="field">
@@ -40,7 +44,7 @@ Vue.component("users", {
 						<option value="COACH">Coach</option>
 					</select>
 				</div>
-				<div class="field" v-if="search.role==='CUSTOMER'">
+				<div class="field" v-if="search.role==='CUSTOMER' && false">
 					<label>Type (Customer)</label>
 					<select type="text" v-model="search.type" v-on:change="onSearch">
 						<option value="">All</option>
@@ -97,7 +101,7 @@ Vue.component("users", {
 				username: "",
 				role: "",
 				type: "",
-				sort: ""
+				sort: 0
 			},
 			showUsers: []
 		}
@@ -111,7 +115,6 @@ Vue.component("users", {
 	},
 	methods: {
 		deleteUser(user) {
-			console.log("newi problem")
 			axios.delete("/user", {
 				params: {
 					id: user.id
@@ -125,7 +128,6 @@ Vue.component("users", {
 		},
 		onSearch() {
 			this.showUsers = [];
-			console.log(this.search)
 			for(var user of this.users) {
 				if(user.firstName.toLowerCase().indexOf(this.search.firstName.trim()) === -1) {
 					continue;
@@ -138,13 +140,101 @@ Vue.component("users", {
 				if(user.username.toLowerCase().indexOf(this.search.username.trim()) === -1) {
 					continue;
 				}
-
-				if(this.search.role != "" && user.role !== this.search.role){
+				console.log(this.search);
+				if(this.search.role !== "" && user.role !== this.search.role){
 					continue;
 				}
 
 				this.showUsers.push(user);
-			} 
+			}
+
+
+				if (this.search.sort == 1) {
+					this.showUsers.sort((a, b) => {
+					  let fa = a.firstName;
+					  let fb = b.firstName;
+					  if (fa < fb) {
+						return -1;
+					  }
+					  if (fa > fb) {
+						return 1;
+					  }
+					  return 0;
+					});
+				} else if (this.search.sort == 2) {
+					this.showUsers.sort((a, b) => {
+						let fa = a.lastName;
+						let fb = b.lastName;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				} else if (this.search.sort == 3) {
+					this.showUsers = this.showUsers.sort((a, b) => {
+						let fa = a.username;
+						let fb = b.username;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+					  console.log(this.showUsers)
+
+				}else if (this.search.sort == 4) {
+					this.showUsers.sort((a, b) => {
+						let fb = a.firstName;
+						let fa = b.firstName;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				}else if (this.search.sort == 5) {
+					this.showUsers.sort((a, b) => {
+						let fb = a.lastName;
+						let fa = b.lastName;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				}else if (this.search.sort == 6) {
+					this.showUsers.sort((a, b) => {
+						let fb = a.username;
+						let fa = b.username;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+				}
+
+
+			
 		}, 
 	}, 
 })

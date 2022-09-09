@@ -19,4 +19,15 @@
   "role" : "MANAGER",
   "deleted" : false,
   "sportsObjectID" : "473c3964-fd0f-4549-bd45-1e55d3693ef2"
+} ], [ "domain.Manager", {
+  "id" : "20454f90-e94d-4aba-8a87-c644b344bf22",
+  "firstName" : "manager1",
+  "lastName" : "manager1",
+  "birthday" : "2022-09-07",
+  "username" : "manager1",
+  "gender" : "Zenski",
+  "password" : "manager1",
+  "role" : "MANAGER",
+  "deleted" : false,
+  "sportsObjectID" : null
 } ] ] ]
