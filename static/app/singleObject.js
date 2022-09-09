@@ -2,9 +2,8 @@ Vue.component("single-object", {
 	template: `
 		<div class="ui container" v-if="sportsObject != null">
 			<div class="ui grid">
-				<div class="four wide column">
+				<div class="eight wide column">
 					<div class="ui one cards">
-
 						<div class="card">
 							<div class="image">
 								<img :src="sportsObject.image">
@@ -45,8 +44,39 @@ Vue.component("single-object", {
 							</div>
 						</div>
 					</div>
+
+					
 				</div>
-				<div class="twelve wide column"></div>
+				<div class="eight wide column">
+					<div class="ui one cards">
+						<form class="ui form card" v-on:submit.prevent="submit" style="padding: 10px">
+							<div class="ui centered grid field">
+								<h1>Add training</h1>
+							</div>
+							<div class="field">
+								<label>Name</label>
+								<input type="text" name="first-name" placeholder="Name" v-model="training.name">
+							</div>
+							<div class="field">
+								<label>Type:</label>
+								<select name="last-name" placeholder="Type" v-model="sportsObject.type">
+									<option>Teretana</option>
+									<option>Bazen</option>
+									<option>Sportski centar</option>
+									<option>Plesni studio</option>
+								</select>
+							</div>
+							<div class="field">
+								<label>Last name</label>
+								<input type="text" name="last-name" placeholder="Last name" v-model="training.type">
+							</div>
+							
+							<div class="ui field centered grid"> 
+								<button class="ui button" type="submit">Submit</button>
+							</div>
+						</form>
+			    	</div>
+				</div>
 				
 	 		</div>
 		</div>
@@ -55,7 +85,16 @@ Vue.component("single-object", {
 	data: function() {
 		return {
 			id : this.$route.params.id,
-			sportsObject: null
+			sportsObject: null,
+			training: {
+				name: "",
+				type: "",
+				duration: "",
+				timeType: "",
+				description: "",
+				image: "",
+				coachID: "",
+			}
 		}
 	}, 
 	beforeCreate: function() {
@@ -65,5 +104,8 @@ Vue.component("single-object", {
 		}}).then((response) => {
 			this.sportsObject = response.data;
 		})
+	}, 
+	onSubmit() {
+
 	}
 })
