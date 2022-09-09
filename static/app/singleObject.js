@@ -70,6 +70,14 @@ Vue.component("single-object", {
 								<label>Last name</label>
 								<input type="text" name="last-name" placeholder="Last name" v-model="training.type">
 							</div>
+							<div class="field" v-if="training.image !== null" style="padding: 20px">
+								<div >
+								<img class="preview" :src="training.image" height="200" width="200">
+								</div>
+							</div>
+							<div class="btn  btn-sm  w-25">
+								<input type="file" @change="uploadImage" name="image" id="image" accept="image/*"/>
+							</div>
 							
 							<div class="ui field centered grid"> 
 								<button class="ui button" type="submit">Submit</button>
@@ -92,7 +100,7 @@ Vue.component("single-object", {
 				duration: "",
 				timeType: "",
 				description: "",
-				image: "",
+				image: null,
 				coachID: "",
 			}
 		}
@@ -105,7 +113,24 @@ Vue.component("single-object", {
 			this.sportsObject = response.data;
 		})
 	}, 
-	onSubmit() {
+	methods: {
+		onSubmit() {
+
+		},
+		uploadImage(event) {
+			var img = event.target.files[0];
+			var formData = new FormData();
+			formData.append("image", img);
+	
+			axios.post('/image', formData, {
+			  headers: {
+				'Content-Type': 'multipart/form-data'
+			  }
+			}).then(response => {
+					  this.training.image = response.data;
+			});
+		  },
 
 	}
+	
 })
