@@ -102,7 +102,9 @@ Vue.component("single-object", {
 				description: "",
 				image: null,
 				coachID: "",
-			}
+				sportsObjectID: ""
+			},
+			coaches: [],
 		}
 	}, 
 	beforeCreate: function() {
@@ -111,7 +113,10 @@ Vue.component("single-object", {
 			id: this.id
 		}}).then((response) => {
 			this.sportsObject = response.data;
-		})
+			this.training.sportsObjectID = this.id;
+		});
+
+		axios.get("/coaches").then(resonse => this.coaches = resonse.data);
 	}, 
 	methods: {
 		onSubmit() {
@@ -127,10 +132,8 @@ Vue.component("single-object", {
 				'Content-Type': 'multipart/form-data'
 			  }
 			}).then(response => {
-					  this.training.image = response.data;
+				this.training.image = response.data;
 			});
 		  },
-
 	}
-	
 })

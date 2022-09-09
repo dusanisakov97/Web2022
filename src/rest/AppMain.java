@@ -28,6 +28,7 @@ import domain.Customer;
 import domain.Fee;
 import domain.Manager;
 import domain.SportsObject;
+import domain.Training;
 import domain.User;
 import dtos.LoginParams;
 import enums.Role;
@@ -235,6 +236,21 @@ public class AppMain {
 		       
 		    return "data/img/" + id + ".jpg";
 			
+		});
+		
+		post("/training", (req, res) -> {
+			res.type("applicaton/json");
+			Training c = g.fromJson(req.body(), Training.class);
+			c.setId(UUID.randomUUID());
+			
+			SportsObject sportsObject = sportsObjectDAO.addTraining(c);
+			return g.toJson(sportsObject);
+
+		});
+		
+		get("coaches", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(userDAO.getCoaches());
 		});
 	}
 }

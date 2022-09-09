@@ -8,6 +8,7 @@ import com.google.gson.JsonElement;
 
 import domain.Manager;
 import domain.SportsObject;
+import domain.Training;
 
 public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 	
@@ -60,6 +61,14 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 		this.sportsObjects.add(c);
 		saveToJson(fileName, sportsObjects);
 		return c;
+	}
+
+
+	public SportsObject addTraining(Training training) {
+		SportsObject sportsObject = getSportsObjectByID(training.getSportsObjectID());
+		sportsObject.getTrainings().add(training);
+		saveToJson(fileName, sportsObjects);
+		return sportsObject;
 	}
 
 	

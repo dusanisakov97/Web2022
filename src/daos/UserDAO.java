@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.google.gson.JsonElement;
 
+import domain.Coach;
 import domain.Customer;
 import domain.Manager;
 import domain.User;
@@ -116,5 +117,16 @@ public class UserDAO implements Serializable<List<User>> {
 			}
 		}
 		return null;
+	}
+
+	public List<Coach> getCoaches() {
+		List<Coach> ret = new ArrayList<>();
+		for (User user : getUsers()) {
+			if(user instanceof Coach) {
+				Coach coach = (Coach) user;
+				ret.add(coach);
+			}
+		}
+		return ret;
 	}
 }
