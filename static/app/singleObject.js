@@ -24,9 +24,12 @@ Vue.component("single-object", {
 								<i class="close	 icon" v-if="!sportsObject.working"></i>
 
 								</span>
-								<span>
+								<span v-if="sportsObject.averageMark !== 0">
 								<i class="star icon"></i>
 								{{sportsObject.averageMark}}
+								</span>
+								<span v-else>
+								Nema ocena!
 								</span>
 							</div>
 							<div class="extra content">

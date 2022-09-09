@@ -43,18 +43,18 @@ Vue.component("home", {
 					<label>Role</label>
 					<select type="text" v-model="search.role" v-on:change="onSearch">
 						<option value="">All</option>
-						<option value="1">Teretana</option>
-                        <option value="2">Bazen</option>
-                        <option value="3">Sportski centar</option>
-                        <option value="4">Plesni studio</option>
+						<option value="Teretana">Teretana</option>
+                        <option value="Bazen">Bazen</option>
+                        <option value="Sportski centar">Sportski centar</option>
+                        <option value="Plesni studio">Plesni studio</option>
 					</select>
 				</div>
 				<div class="field">
-					<label>Type (Customer)</label>
+					<label>Working</label>
 					<select type="text" v-model="search.working" v-on:change="onSearch">
 						<option value="">All</option>
-						<option value="1">Work</option>
-						<option value="2">No Work</option>
+						<option value="true">Work</option>
+						<option value="false">No Work</option>
 					</select>
 				</div>
 			</div>
@@ -79,9 +79,12 @@ Vue.component("home", {
 					<i class="close	 icon" v-if="!o.working"></i>
 
 					</span>
-					<span>
+					<span v-if="o.averageMark !== 0">
 					<i class="star icon"></i>
 					{{o.averageMark}}
+					</span>
+					<span v-else>
+					Nema ocena!
 					</span>
 				</div>
 				<div class="extra content">
@@ -110,8 +113,8 @@ Vue.component("home", {
 				name: "",
 				type: "",
 				location: "",
-				minAverageMark: null,
-				maxAvarageMark: null,
+				minAverageMark: "",
+				maxAverageMark: "",
 				working: "",
 				role: "",
 				sort: ""
@@ -126,6 +129,7 @@ Vue.component("home", {
 	},
 	methods: {
 		onSearch: function(){
+			console.log(this.search);
 			this.showSportsObjects = [];
 			for(var o of this.sportsObjects) {
 				if(o.name.toLowerCase().indexOf(this.search.name.trim()) === -1) {
@@ -143,93 +147,111 @@ Vue.component("home", {
 					continue;
 				}
 
+				if(this.search.minAverageMark !== "" && parseInt(o.averageMark) < parseInt(this.search.minAverageMark)){
+					continue;
+				}
+
+				if(this.search.maxAvarageMark !== "" && parseInt(o.averageMark) > parseInt(this.search.maxAverageMark)){
+					continue;
+				}
+
+				if(this.search.working != "" && String(this.search.working) !== String(o.working)) {
+					continue;
+				}
+
+			
+				
+
 				this.showSportsObjects.push(o);
 			}
 
-
-			// if (this.search.sort == 1) {
-			// 		this.showSportsObjects.sort((a, b) => {
-			// 		  let fa = a.firstName;
-			// 		  let fb = b.firstName;
-			// 		  if (fa < fb) {
-			// 			return -1;
-			// 		  }
-			// 		  if (fa > fb) {
-			// 			return 1;
-			// 		  }
-			// 		  return 0;
-			// 		});
-			// } else if (this.search.sort == 2) {
-			// 		this.showSportsObjects.sort((a, b) => {
-			// 			let fa = a.lastName;
-			// 			let fb = b.lastName;
-			// 			if (fa < fb) {
-			// 			  return -1;
-			// 			}
-			// 			if (fa > fb) {
-			// 			  return 1;
-			// 			}
-			// 			return 0;
-			// 		  });
-
-
-			// 	} else if (this.search.sort == 3) {
-			// 		this.showSportsObjects = this.showUsers.sort((a, b) => {
-			// 			let fa = a.username;
-			// 			let fb = b.username;
-			// 			if (fa < fb) {
-			// 			  return -1;
-			// 			}
-			// 			if (fa > fb) {
-			// 			  return 1;
-			// 			}
-			// 			return 0;
-			// 		  });
-
-			// 		  console.log(this.showUsers)
-
-			// 	}else if (this.search.sort == 4) {
-			// 		this.showSportsObjects.sort((a, b) => {
-			// 			let fb = a.firstName;
-			// 			let fa = b.firstName;
-			// 			if (fa < fb) {
-			// 			  return -1;
-			// 			}
-			// 			if (fa > fb) {
-			// 			  return 1;
-			// 			}
-			// 			return 0;
-			// 		  });
+			if (this.search.sort === "") {
+				
+			} else if (this.search.sort == 1) {
+					this.showSportsObjects.sort((a, b) => {
+					  let fa = a.name;
+					  let fb = b.name;
+					  if (fa < fb) {
+						return -1;
+					  }
+					  if (fa > fb) {
+						return 1;
+					  }
+					  return 0;
+					});
+			} else if (this.search.sort == 2) {
+					this.showSportsObjects.sort((a, b) => {
+						let fa = a.location.street + ', ' + a.location.city + ', ' + a.location.zipCode;
+						let fb = b.location.street + ', ' + b.location.city + ', ' + b.location.zipCode;
+						
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
 
 
-			// 	}else if (this.search.sort == 5) {
-			// 		this.showSportsObjects.sort((a, b) => {
-			// 			let fb = a.lastName;
-			// 			let fa = b.lastName;
-			// 			if (fa < fb) {
-			// 			  return -1;
-			// 			}
-			// 			if (fa > fb) {
-			// 			  return 1;
-			// 			}
-			// 			return 0;
-			// 		  });
+				} else if (this.search.sort == 3) {
+					this.showSportsObjects = this.showUsers.sort((a, b) => {
+						
+						let fa = a.averageMark;
+						let fb = b.averageMark;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+					  console.log(this.showUsers)
+
+				}else if (this.search.sort == 4) {
+					this.showSportsObjects.sort((a, b) => {
+						let fb = a.name;
+						let fa = b.name;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
 
 
-			// 	}else if (this.search.sort == 6) {
-			// 		this.showSportsObjects.sort((a, b) => {
-			// 			let fb = a.username;
-			// 			let fa = b.username;
-			// 			if (fa < fb) {
-			// 			  return -1;
-			// 			}
-			// 			if (fa > fb) {
-			// 			  return 1;
-			// 			}
-			// 			return 0;
-			// 		  });
+				}else if (this.search.sort == 5) {
+					this.showSportsObjects.sort((a, b) => {
+						let fb = a.location.street + ', ' + a.location.city + ', ' + a.location.zipCode;
+						let fa = b.location.street + ', ' + b.location.city + ', ' + b.location.zipCode;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
 
-			// 	}
+
+				}else if (this.search.sort == 6) {
+					this.showSportsObjects.sort((a, b) => {
+						let fa = a.averageMark;
+						let fb = b.averageMark;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+				}
 		}
 	}
 	

@@ -17,4 +17,42 @@
   "deleted" : false,
   "trainings" : [ "java.util.ArrayList", [ ] ],
   "managerID" : "5c6dfa72-e31b-491c-b357-4153c6fd828f"
+} ], [ "domain.SportsObject", {
+  "id" : "a4ec2fc4-9269-4c52-98d1-79f23ce8ae5f",
+  "name" : "Bazen 1",
+  "type" : "Bazen",
+  "working" : true,
+  "location" : [ "domain.Location", {
+    "street" : "Cara Dusana 1",
+    "city" : "Beograd",
+    "zipCode" : 23000
+  } ],
+  "image" : "data/img/cee67efe-00b3-46d5-8dc1-8b3db3206fc3.jpg",
+  "averageMark" : 5.0,
+  "sum" : 5.0,
+  "counter" : 1,
+  "startWorking" : "08:00",
+  "endWorking" : "17:00",
+  "deleted" : false,
+  "trainings" : [ "java.util.ArrayList", [ ] ],
+  "managerID" : "20454f90-e94d-4aba-8a87-c644b344bf22"
+} ], [ "domain.SportsObject", {
+  "id" : "c0ad1494-514e-4927-8b8c-5ceb3d7b9dac",
+  "name" : "Plesni studio",
+  "type" : "Plesni studio",
+  "working" : false,
+  "location" : [ "domain.Location", {
+    "street" : "Bulevar Oslobodjenja 40",
+    "city" : "Novi Sad",
+    "zipCode" : 21000
+  } ],
+  "image" : "data/img/e09480c3-e27a-4381-b88f-4dd3ba269673.jpg",
+  "averageMark" : 0.0,
+  "sum" : 0.0,
+  "counter" : 0,
+  "startWorking" : "12:00",
+  "endWorking" : "20:00",
+  "deleted" : false,
+  "trainings" : [ "java.util.ArrayList", [ ] ],
+  "managerID" : "47e0bdba-b1d2-44d6-8d01-124f8eb3ffb0"
 } ] ] ]

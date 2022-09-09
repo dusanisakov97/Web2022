@@ -29,5 +29,16 @@
   "password" : "manager1",
   "role" : "MANAGER",
   "deleted" : false,
-  "sportsObjectID" : null
+  "sportsObjectID" : "a4ec2fc4-9269-4c52-98d1-79f23ce8ae5f"
+} ], [ "domain.Manager", {
+  "id" : "47e0bdba-b1d2-44d6-8d01-124f8eb3ffb0",
+  "firstName" : "manager2",
+  "lastName" : "manager2",
+  "birthday" : "2022-09-23",
+  "username" : "manager2",
+  "gender" : "Zenski",
+  "password" : "manager2",
+  "role" : "MANAGER",
+  "deleted" : false,
+  "sportsObjectID" : "c0ad1494-514e-4927-8b8c-5ceb3d7b9dac"
 } ] ] ]
