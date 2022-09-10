@@ -13,6 +13,11 @@ public class Training {
 	private String image;
 	private Double extraPrice;
 	
+	
+	public Training() {
+		
+	}
+	
 	public Training(UUID id, UUID coachID, UUID sportsObjectID, String name, String type, String duration,
 			String description, String image, Double extraPrice) {
 		super();

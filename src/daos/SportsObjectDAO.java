@@ -66,6 +66,12 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 
 	public SportsObject addTraining(Training training) {
 		SportsObject sportsObject = getSportsObjectByID(training.getSportsObjectID());
+		
+		for (Training t : sportsObject.getTrainings()) {
+			if(t.getName().equals(training.getName())) {
+				return null;
+			}
+		}
 		sportsObject.getTrainings().add(training);
 		saveToJson(fileName, sportsObjects);
 		return sportsObject;

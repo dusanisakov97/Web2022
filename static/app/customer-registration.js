@@ -20,7 +20,7 @@ Vue.component("customer-registration", {
 		  				</div>
 		  				<div class="field">
 						    <label>Password</label>
-						    <input type="text" placeholder="Password" v-model="user.password">
+						    <input type="password" placeholder="Password" v-model="user.password">
 						</div>
 						<div class="field">
 		   					 <label>Birthday</label>

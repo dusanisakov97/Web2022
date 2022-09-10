@@ -4,8 +4,8 @@ Vue.component("my-object", {
 		<div class="ui grid" v-if="sportsObjectID != null">
 			<div class="eight wide column">
 				<div class="ui one cards">
-					<div class="card">
-						<div class="image">
+					<div class="card" v-if="sportsObject != null">
+						<div class="image" v-if="sportsObject.image != null">
 							<img :src="sportsObject.image">
 						</div>
 						<div class="content">
@@ -49,7 +49,7 @@ Vue.component("my-object", {
 			</div>
 			<div class="eight wide column">
 				<div class="ui one cards">
-					<form class="ui form card" v-on:submit.prevent="submit" style="padding: 10px">
+					<form class="ui form card" v-on:submit.prevent="onSubmit" style="padding: 10px">
 						<div class="ui centered grid field">
 							<h1>Add training</h1>
 						</div>
@@ -59,18 +59,37 @@ Vue.component("my-object", {
 						</div>
 						<div class="field">
 							<label>Type:</label>
-							<select name="last-name" placeholder="Type" v-model="sportsObject.type">
-								<option>Teretana</option>
-								<option>Bazen</option>
-								<option>Sportski centar</option>
-								<option>Plesni studio</option>
+							<select name="last-name" placeholder="Type" v-model="training.type">
+								<option value=""></option>
+								<option value="Grupni treninzi">Grupni treninzi</option>
+								<option value="Personalni treninzi">Personalni treninzi</option>
+								<option value="Sauna">Sauna</option>
+								<option value="Plivanje">Plivanje</option>
 							</select>
 						</div>
 						<div class="field">
-							<label>Last name</label>
-							<input type="text" name="last-name" placeholder="Last name" v-model="training.type">
+							<label>Duration</label>
+							<input type="number" name="last-name" placeholder="Duration" v-model="training.duration">
 						</div>
-						<div class="field" v-if="training.image !== null" style="padding: 20px">
+						<div class="field">
+							<label>Type:</label>
+							<select name="last-name" placeholder="Type" v-model="training.timeType">
+								<option value="min">Minutes</option>
+								<option value="hou">Hours</option>
+							</select>
+						</div>
+						<div class="field">
+							<label>Description</label>
+							<input type="text" name="last-name" placeholder="Description" v-model="training.description">
+						</div>
+						<div class="field">
+                            <label>Coach</label>
+                            <select name="last-name" placeholder="Type" v-model="training.coachID" style="padding: 10px">
+                            	<option :value="m.id" v-for="m in coaches">{{m.firstName + ' ' + m.lastName}}</option>
+                        	</select>                        
+						</div>
+
+						<div class="field" v-if="training.image != null" style="padding: 20px">
 							<div >
 							<img class="preview" :src="training.image" height="200" width="200">
 							</div>
@@ -83,6 +102,34 @@ Vue.component("my-object", {
 							<button class="ui button" type="submit">Submit</button>
 						</div>
 					</form>
+				</div>
+			</div>
+
+			<div class="ui cards" v-if="sportsObject !== null">
+				<div class="card" v-for="o in sportsObject.trainings" :href="'#/single-object/' + o.id">
+					<div class="image">
+						<img :src="o.image">
+					</div>
+					<div class="content">
+						<div class="header">{{o.name}}</div>
+						<div class="meta">
+						<a>{{o.type}}</a>
+						</div>
+						<div class="description">
+						{{o.description}}
+						</div>
+					</div>
+					
+					<div class="extra content">
+						<span class="right floated">
+
+						
+						</span>
+						<span>
+						<i class="time icon"></i>
+						{{o.duration === 0 ? "No information" : o.duration}}
+						</span>
+					</div>
 				</div>
 			</div>
 			
@@ -101,8 +148,8 @@ Vue.component("my-object", {
 			training: {
 				name: "",
 				type: "",
-				duration: "",
-				timeType: "",
+				duration: 0,
+				timeType: "min",
 				description: "",
 				image: null,
 				coachID: "",
@@ -130,14 +177,44 @@ Vue.component("my-object", {
 		
 	}, 
 	mounted: function() {
-		console.log(this.sportsObjectID)
-		
-
 		axios.get("/coaches").then(resonse => this.coaches = resonse.data);
 	},
 	methods: {
 		onSubmit() {
+			if (this.training.name.length < 4) {
+				alert("Too short name!");
+				return;
+			}
 
+			if (this.training.type.length < 4) {
+				alert("Pick the type of training!");
+				return;
+			}
+
+			if (parseInt(this.training.duration) > 0) {
+				this.training.duration = this.training.duration + " " + this.training.timeType;
+			}
+
+			this.training.sportsObjectID = this.sportsObjectID;
+			
+			axios.post("/training", this.training).then((response) => {
+				if(response.status === 201) {
+					alert("Successful added training!");
+					this.training = {
+						name: "",
+						type: "",
+						duration: "",
+						timeType: "min",
+						description: "",
+						image: null,
+						coachID: "",
+						sportsObjectID: ""
+					}
+					this.sportsObject = response.data;
+				} 
+			}).catch(() => {
+				alert("Training with name already exists!");
+			})
 		},
 		uploadImage(event) {
 			var img = event.target.files[0];

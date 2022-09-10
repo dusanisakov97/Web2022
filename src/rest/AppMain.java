@@ -200,14 +200,17 @@ public class AppMain {
 		post("/customer/fee", (req, res) -> {
 			res.type("applicaton/json");
 			Fee c = g.fromJson(req.body(), Fee.class);
+			
 			Session session = req.session(true);
 			
-			Customer cus = session.attribute("user");
-			if(c == null) {
+			User cus = session.attribute("user");
+			if(cus == null) {
 				res.status(403);
 			} else {
-				Customer customer = userDAO.getCustomerByID(c.getId());
+				Customer customer = userDAO.getCustomerByID(cus.getId());
+				System.out.print(c);
 				customer.setActiveFee(c);
+				res.status(201);
 			}
 
 			return g.toJson(cus);
@@ -244,6 +247,11 @@ public class AppMain {
 			c.setId(UUID.randomUUID());
 			
 			SportsObject sportsObject = sportsObjectDAO.addTraining(c);
+			if(sportsObject == null) {
+				res.status(409);
+			} else {
+				res.status(201);
+			}
 			return g.toJson(sportsObject);
 
 		});
@@ -251,6 +259,23 @@ public class AppMain {
 		get("coaches", (req, res) -> {
 			res.type("application/json");
 			return g.toJson(userDAO.getCoaches());
+		});
+		
+		post("/customer/training", (req, res) -> {
+			res.type("applicaton/json");
+			Training c = g.fromJson(req.body(), Training.class);
+			
+			Session session = req.session(true);
+			
+			User cus = session.attribute("user");
+			if(cus == null) {
+				res.status(403);
+			} else {
+				Customer customer = userDAO.addTraining(c);
+				res.status(201);
+			}
+
+			return g.toJson(cus);
 		});
 	}
 }

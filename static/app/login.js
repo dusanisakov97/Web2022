@@ -48,7 +48,7 @@ Vue.component("login", {
 					window.location.href = "/#/home";
 				} 
 			}).catch(() => {
-				alert("User with username already exists!");
+				alert("Wrong credentials!");
 			})		}
 	}
 })

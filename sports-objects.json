@@ -34,7 +34,17 @@
   "startWorking" : "08:00",
   "endWorking" : "17:00",
   "deleted" : false,
-  "trainings" : [ "java.util.ArrayList", [ ] ],
+  "trainings" : [ "java.util.ArrayList", [ [ "domain.Training", {
+    "id" : "13724ffa-db80-4e93-8d98-8c17da6e3245",
+    "coachID" : "7ce85dd9-5c90-474e-b8d8-02196132f1eb",
+    "sportsObjectID" : "a4ec2fc4-9269-4c52-98d1-79f23ce8ae5f",
+    "name" : "Karate",
+    "type" : "Grupni treninzi",
+    "duration" : "30 min",
+    "description" : "",
+    "image" : "data/img/659a0a77-7ff8-4d24-abda-6b868d263c5e.jpg",
+    "extraPrice" : null
+  } ] ] ],
   "managerID" : "20454f90-e94d-4aba-8a87-c644b344bf22"
 } ], [ "domain.SportsObject", {
   "id" : "c0ad1494-514e-4927-8b8c-5ceb3d7b9dac",

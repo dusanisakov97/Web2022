@@ -48,42 +48,38 @@ Vue.component("single-object", {
 					
 				</div>
 				<div class="eight wide column">
-					<div class="ui one cards">
-						<form class="ui form card" v-on:submit.prevent="submit" style="padding: 10px">
-							<div class="ui centered grid field">
-								<h1>Add training</h1>
+					<div class="ui cards" v-if="sportsObject !== null">
+						<div class="card" v-for="o in sportsObject.trainings" :href="'#/single-object/' + o.id">
+							<div class="image">
+								<img :src="o.image">
 							</div>
-							<div class="field">
-								<label>Name</label>
-								<input type="text" name="first-name" placeholder="Name" v-model="training.name">
-							</div>
-							<div class="field">
-								<label>Type:</label>
-								<select name="last-name" placeholder="Type" v-model="sportsObject.type">
-									<option>Teretana</option>
-									<option>Bazen</option>
-									<option>Sportski centar</option>
-									<option>Plesni studio</option>
-								</select>
-							</div>
-							<div class="field">
-								<label>Last name</label>
-								<input type="text" name="last-name" placeholder="Last name" v-model="training.type">
-							</div>
-							<div class="field" v-if="training.image !== null" style="padding: 20px">
-								<div >
-								<img class="preview" :src="training.image" height="200" width="200">
+							<div class="content">
+								<div class="header">{{o.name}}</div>
+								<div class="meta">
+								<a>{{o.type}}</a>
+								</div>
+								<div class="description">
+								{{o.description}}
 								</div>
 							</div>
-							<div class="btn  btn-sm  w-25">
-								<input type="file" @change="uploadImage" name="image" id="image" accept="image/*"/>
-							</div>
 							
-							<div class="ui field centered grid"> 
-								<button class="ui button" type="submit">Submit</button>
+							<div class="extra content">
+								<span class="right floated">
+
+								
+								</span>
+								<span>
+								<i class="time icon"></i>
+								{{o.duration === 0 ? "No information" : o.duration}}
+								</span>
 							</div>
-						</form>
-			    	</div>
+
+							<div class="ui bottom attached button" v-if="mode==='CUSTOMER'" v-on:click="buy(f)">
+		      <i class="shop icon"></i>
+		      Buy
+		    </div>
+						</div>
+					</div>
 				</div>
 				
 	 		</div>
@@ -105,6 +101,7 @@ Vue.component("single-object", {
 				sportsObjectID: ""
 			},
 			coaches: [],
+			mode: ""
 		}
 	}, 
 	beforeCreate: function() {
@@ -117,6 +114,10 @@ Vue.component("single-object", {
 		});
 
 		axios.get("/coaches").then(resonse => this.coaches = resonse.data);
+
+		axios.get("/session").then((response) => {
+				this.mode = response.data.role;
+		});
 	}, 
 	methods: {
 		onSubmit() {
