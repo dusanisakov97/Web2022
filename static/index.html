@@ -34,11 +34,14 @@
 	  <a class="item" v-if="mode==='ADMIN'" href="/#/users">
 	    Users
 	  </a>
-	  <a class="item" href="/#/add-object">
+	  <a class="item" v-if="mode==='ADMIN'" href="/#/add-object">
 	    Add Object
 	  </a>
 	   <a class="item" href="/#/fees" v-if="mode==='CUSTOMER'">
 	    Fees
+	  </a>
+	  <a class="item" href="/#/my-object" v-if="mode==='MANAGER'">
+	    My Object
 	  </a>
 	  
 	  <div class="right menu">
@@ -64,6 +67,8 @@
   </div>
 
   <script src="app/singleObject.js"></script>
+  <script src="app/my-object.js"></script>
+
   <script src="app/blankPage.js"></script>
   <script src="app/users.js"></script>
   <script src="app/login.js"></script>

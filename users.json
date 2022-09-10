@@ -41,4 +41,15 @@
   "role" : "MANAGER",
   "deleted" : false,
   "sportsObjectID" : "c0ad1494-514e-4927-8b8c-5ceb3d7b9dac"
+} ], [ "domain.Manager", {
+  "id" : "4fe77cb1-f29a-426c-979c-264428f2cf62",
+  "firstName" : "manager3",
+  "lastName" : "manager3",
+  "birthday" : "2022-09-23",
+  "username" : "manager3",
+  "gender" : "Muski",
+  "password" : "manager3",
+  "role" : "MANAGER",
+  "deleted" : false,
+  "sportsObjectID" : null
 } ] ] ]
