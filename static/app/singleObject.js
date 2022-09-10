@@ -74,7 +74,7 @@ Vue.component("single-object", {
 								</span>
 							</div>
 
-							<div class="ui bottom attached button" v-if="mode==='CUSTOMER'" v-on:click="buy(f)">
+							<div class="ui bottom attached button" v-if="mode==='CUSTOMER'" v-on:click="buy(o)">
 		      <i class="shop icon"></i>
 		      Buy
 		    </div>
@@ -120,21 +120,12 @@ Vue.component("single-object", {
 		});
 	}, 
 	methods: {
-		onSubmit() {
-
-		},
-		uploadImage(event) {
-			var img = event.target.files[0];
-			var formData = new FormData();
-			formData.append("image", img);
-	
-			axios.post('/image', formData, {
-			  headers: {
-				'Content-Type': 'multipart/form-data'
-			  }
-			}).then(response => {
-				this.training.image = response.data;
+		buy(t) {
+			axios.post("/customer/training", t).then((response) => {
+				alert("Sucessfuly buy training!")
+			}).catch(() => {
+				alert("You don't have training on your fee!")
 			});
-		  },
+		},
 	}
 })

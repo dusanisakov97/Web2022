@@ -207,9 +207,7 @@ public class AppMain {
 			if(cus == null) {
 				res.status(403);
 			} else {
-				Customer customer = userDAO.getCustomerByID(cus.getId());
-				System.out.print(c);
-				customer.setActiveFee(c);
+				Customer customer = userDAO.addFee(c, cus.getId());
 				res.status(201);
 			}
 
@@ -256,7 +254,7 @@ public class AppMain {
 
 		});
 		
-		get("coaches", (req, res) -> {
+		get("/coaches", (req, res) -> {
 			res.type("application/json");
 			return g.toJson(userDAO.getCoaches());
 		});
@@ -267,11 +265,13 @@ public class AppMain {
 			
 			Session session = req.session(true);
 			
-			User cus = session.attribute("user");
-			if(cus == null) {
+			Customer cus = session.attribute("user");
+			if(cus == null ) {
 				res.status(403);
+			} else if (cus.getNumberOfTrainings() <= 0) {
+				res.status(400);
 			} else {
-				Customer customer = userDAO.addTraining(c);
+				Customer customer = userDAO.addTraining(c, cus.getId());
 				res.status(201);
 			}
 

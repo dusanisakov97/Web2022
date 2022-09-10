@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import enums.Role;
@@ -9,40 +11,19 @@ public class Customer extends User {
 	private Fee activeFee;
 	private Integer points;
 	private CustomerType customerType;
-	private Training history;
+	private List<Training> history = new ArrayList<>();
+	private Integer NumberOfTrainings;
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	
-
-
 	public Customer(UUID id, String firstName, String lastName, String birthday, String username, String gender,
 			String password, Role role) {
 		super(id, firstName, lastName, birthday, username, gender, password, role);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
-
-
-	public Customer(Fee activeFee, Integer points, CustomerType customerType, Training history) {
-		super();
-		this.activeFee = activeFee;
-		this.points = points;
-		this.customerType = customerType;
-		this.history = history;
-	}
-
-
-
-
 
 
 	public Fee getActiveFee() {
@@ -82,7 +63,7 @@ public class Customer extends User {
 
 
 
-	public Training getHistory() {
+	public List<Training> getHistory() {
 		return history;
 	}
 
@@ -91,11 +72,21 @@ public class Customer extends User {
 
 
 
-	public void setHistory(Training history) {
+	public void setHistory(List<Training> history) {
 		this.history = history;
 	}
+
+	public Integer getNumberOfTrainings() {
+		return NumberOfTrainings;
+	}
+
+	public void setNumberOfTrainings(Integer numberOfTrainings) {
+		NumberOfTrainings = numberOfTrainings;
+	}
+
+
 	
-	
+
 	
 	
 }

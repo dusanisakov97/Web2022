@@ -8,7 +8,10 @@ import com.google.gson.JsonElement;
 
 import domain.Coach;
 import domain.Customer;
+import domain.CustomerType;
+import domain.Fee;
 import domain.Manager;
+import domain.Training;
 import domain.User;
 import dtos.LoginParams;
 import enums.Role;
@@ -128,5 +131,21 @@ public class UserDAO implements Serializable<List<User>> {
 			}
 		}
 		return ret;
+	}
+
+	public Customer addTraining(Training c, UUID id) {
+		Customer customer = getCustomerByID(id);
+		customer.getHistory().add(c);
+		customer.setNumberOfTrainings(customer.getNumberOfTrainings() - 1);
+		saveToJson(fileName, users);
+		return customer;
+	}
+
+	public Customer addFee(Fee c, UUID id) {
+		Customer customer = getCustomerByID(id);
+		customer.setNumberOfTrainings(c.getTrainings());
+		customer.setActiveFee(c);	
+		saveToJson(fileName, users);
+		return customer;
 	}
 }

@@ -4,7 +4,7 @@ Vue.component("profile", {
 			    <div class="column">
 					<form class="ui form" v-on:submit.prevent="submit">
 					<div class="ui centered grid field">
-						<h1>Registration customer</h1>
+						<h1>Profile</h1>
 					</div>
 						<div class="field">
 		   					 <label>Username</label>

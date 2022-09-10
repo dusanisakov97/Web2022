@@ -56,7 +56,7 @@ Vue.component("fees", {
 								</div>
 							</div>
 						</div>
-						<div class="ui bottom attached button" v-on:click="buy(f)">
+						<div class="ui bottom attached button" v-on:click="buy">
 		      <i class="shop icon"></i>
 		      Pay
 		    </div>
@@ -87,7 +87,7 @@ Vue.component("fees", {
 		selectFee(fee) {
 			this.selectedFee = fee;
 		},
-		buy(fee) {
+		buy() {
 			axios.post("/customer/fee", this.selectedFee).then(response => {
 				window.location.href = "/#/profile"
 				alert("Successfuly shopping!");
