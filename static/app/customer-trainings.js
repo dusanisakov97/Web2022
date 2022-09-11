@@ -206,7 +206,5 @@ Vue.component("customer-trainings", {
 
 				}
 		}
-	}, async getObject() {
-
-	}
+	}, 
 })

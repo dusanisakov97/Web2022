@@ -114,7 +114,18 @@
     "image" : "data/img/659a0a77-7ff8-4d24-abda-6b868d263c5e.jpg",
     "extraPrice" : null,
     "date" : "2022-09-10"
+  } ], [ "domain.Training", {
+    "id" : "5670d215-ae36-4268-8cf9-15f370560d40",
+    "coachID" : "7ce85dd9-5c90-474e-b8d8-02196132f1eb",
+    "sportsObjectID" : "c0ad1494-514e-4927-8b8c-5ceb3d7b9dac",
+    "name" : "Ples",
+    "type" : "Grupni treninzi",
+    "duration" : "60 min",
+    "description" : "Ples u grupi",
+    "image" : "data/img/7742ba38-4746-4f2a-85ea-53b93e471419.jpg",
+    "extraPrice" : null,
+    "date" : "2022-09-11"
   } ] ] ],
   "startOfFee" : "2022-09-11",
-  "numberOfTrainings" : 16
+  "numberOfTrainings" : 15
 } ] ] ]
