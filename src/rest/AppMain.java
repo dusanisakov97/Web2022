@@ -13,6 +13,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import javax.servlet.MultipartConfigElement;
@@ -57,6 +60,28 @@ public class AppMain {
 			if (u != null) {
 				Session session = req.session(true);
 				session.attribute("user", u);
+				
+				if(u.getRole().equals(Role.CUSTOMER)) {
+					Customer customer = (Customer) u;
+					if (customer.getActiveFee() != null) {
+						LocalDate now = LocalDate.now();
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						LocalDate fee = LocalDate.parse(customer.getStartOfFee(), formatter).plusMonths(customer.getActiveFee().getMonths());
+						if (now.isAfter(fee)) {
+							if(customer.getActiveFee().getTrainings() / 3 > (customer.getActiveFee().getTrainings() - customer.getNumberOfTrainings())) {
+								Integer points =  (int) (customer.getActiveFee().getPrice()/1000*3*4);
+								userDAO.setCustomerPoints(customer, 0-points);
+
+							} else {
+								Integer points =  (int) (customer.getActiveFee().getPrice()/1000 * customer.getNumberOfTrainings());
+								userDAO.setCustomerPoints(customer, points);
+
+							}
+							
+						}
+					}
+					
+				}
 			
 			} else {
 				res.status(400);

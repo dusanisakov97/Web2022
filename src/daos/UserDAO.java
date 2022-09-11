@@ -1,5 +1,7 @@
 package daos;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -145,7 +147,18 @@ public class UserDAO implements Serializable<List<User>> {
 		Customer customer = getCustomerByID(id);
 		customer.setNumberOfTrainings(c.getTrainings());
 		customer.setActiveFee(c);	
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		customer.setStartOfFee(LocalDate.now().format(formatter));
 		saveToJson(fileName, users);
 		return customer;
+	}
+
+	public void setCustomerPoints(Customer customer, Integer points) {
+		customer.setPoints(customer.getPoints()+points);
+		customer.setNumberOfTrainings(0);
+		customer.setStartOfFee(null);
+		customer.setActiveFee(null);
+		saveToJson(fileName, users);
+		
 	}
 }

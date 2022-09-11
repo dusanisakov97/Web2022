@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,6 +14,7 @@ public class Customer extends User {
 	private CustomerType customerType;
 	private List<Training> history = new ArrayList<>();
 	private Integer NumberOfTrainings;
+	private String startOfFee;
 
 	public Customer() {
 		super();
@@ -68,9 +70,7 @@ public class Customer extends User {
 	}
 
 
-
-
-
+	
 
 	public void setHistory(List<Training> history) {
 		this.history = history;
@@ -84,7 +84,15 @@ public class Customer extends User {
 		NumberOfTrainings = numberOfTrainings;
 	}
 
+	public String getStartOfFee() {
+		return startOfFee;
+	}
 
+	public void setStartOfFee(String startOfFee) {
+		this.startOfFee = startOfFee;
+	}
+
+	
 	
 
 	

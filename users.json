@@ -63,35 +63,25 @@
   "role" : "COACH",
   "deleted" : false
 } ], [ "domain.Customer", {
-  "id" : "92033cf0-b637-4e88-846c-5e97e93dcc38",
+  "id" : "df6c2c72-a4c0-4082-b0cb-7a7600efd4ae",
   "firstName" : "customer",
   "lastName" : "customer",
-  "birthday" : "2022-10-01",
+  "birthday" : "2022-09-28",
   "username" : "customer",
   "gender" : "Zenski",
   "password" : "customer",
   "role" : "CUSTOMER",
   "deleted" : false,
   "activeFee" : [ "domain.Fee", {
-    "id" : "e0bec6f0-34c1-476e-81f9-843909981510",
+    "id" : "73611536-fddb-40b1-b6fb-5561014160c0",
     "months" : 1,
-    "price" : 2000.0,
-    "name" : "Zlatni 2",
-    "trainings" : 10
+    "price" : 3499.0,
+    "name" : "Zlatni 1",
+    "trainings" : 20
   } ],
-  "points" : 0,
+  "points" : 14,
   "customerType" : null,
-  "history" : [ "java.util.ArrayList", [ null, [ "domain.Training", {
-    "id" : "13724ffa-db80-4e93-8d98-8c17da6e3245",
-    "coachID" : "7ce85dd9-5c90-474e-b8d8-02196132f1eb",
-    "sportsObjectID" : "a4ec2fc4-9269-4c52-98d1-79f23ce8ae5f",
-    "name" : "Karate",
-    "type" : "Grupni treninzi",
-    "duration" : "30 min",
-    "description" : "",
-    "image" : "data/img/659a0a77-7ff8-4d24-abda-6b868d263c5e.jpg",
-    "extraPrice" : null
-  } ], [ "domain.Training", {
+  "history" : [ "java.util.ArrayList", [ [ "domain.Training", {
     "id" : "13724ffa-db80-4e93-8d98-8c17da6e3245",
     "coachID" : "7ce85dd9-5c90-474e-b8d8-02196132f1eb",
     "sportsObjectID" : "a4ec2fc4-9269-4c52-98d1-79f23ce8ae5f",
@@ -102,5 +92,6 @@
     "image" : "data/img/659a0a77-7ff8-4d24-abda-6b868d263c5e.jpg",
     "extraPrice" : null
   } ] ] ],
-  "numberOfTrainings" : 10
+  "startOfFee" : "2022-09-11",
+  "numberOfTrainings" : 19
 } ] ] ]

@@ -34,6 +34,31 @@ Vue.component("profile", {
 						    	<option>Zenski</option>
 						    </select>
 						</div>
+						<div class="field" v-if="user.role==='CUSTOMER'">
+						    <label>Points</label>
+							<input type="text" v-model="user.points" disabled>
+
+						</div>
+						<div class="field" v-if="user.role==='CUSTOMER'">
+						    <label>Type</label>
+							<input type="text" v-model="user.customerType" disabled>
+
+						</div>
+						<div class="field" v-if="user.role==='CUSTOMER' && user.activeFee != null">
+						    <label>Trainings left</label>
+							<input type="text" v-model="user.NumberOfTrainings" disabled>
+
+						</div>
+						<div class="field" v-if="user.role==='CUSTOMER' && user.activeFee != null" >
+						    <label>Start of fee</label>
+							<input type="text" v-model="user.startOfFee" disabled>
+
+						</div>
+						<div class="field" v-if="user.role==='CUSTOMER' && user.activeFee != null" >
+						    <label>Duration of fee (months)</label>
+							<input type="text" v-model="user.activeFee.months" disabled>
+
+						</div>
 						<div class="ui field centered grid"> 
 							<button class="ui button" type="submit">Update</button>
 						</div>
