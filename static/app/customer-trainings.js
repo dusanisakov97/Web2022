@@ -13,7 +13,7 @@ Vue.component("customer-trainings", {
 				</div>
 				<div class="field">
 					<label>End date</label>
-					<input type="date" placeholder="Max" v-model="search.EndDate" v-on:input="onSearch">
+					<input type="date" placeholder="Max" v-model="search.endDate" v-on:input="onSearch">
 				</div>
 			</div>
 
@@ -98,23 +98,115 @@ Vue.component("customer-trainings", {
 				role: ""
 
 			},
+			allHistory: []
 		}
 	}, 
 	async created() {
 		await axios.get("/session").then((response) => {
 				this.user = response.data;
-				for(var i in this.user.history) {
-				axios.get("/sports-object", {
-						params: {
-							id: this.user.history[i].sportsObjectID
+				console.log(this.user)
+			});
+			
+			for(t of this.user.history) {
+					console.log(t)
+					await axios.get("/sports-object", {
+							params: {
+								id: t.sportsObjectID
+							}
+						}).then(response => {
+							t.sportsObject = response.data;
+							this.history.push(t);
 						}
-					}).then(response => this.history.push({...this.user.history[i], "sportsObject" : response.data}))
+							)
 				}
-		});
+		
+		this.allHistory = this.history;
+		console.log(this.allHistory);
 
-	},methods: {
+	} ,methods: {
 		onSearch: function(){
+			console.log(this.search);
+			this.history = [];
+			for(var o of this.allHistory) {
+				if(o.sportsObject.name.toLowerCase().indexOf(this.search.name.trim()) === -1) {
+					continue;
+				}
 
+				if(this.search.startDate !== "" && new Date(o.date) < new Date(this.search.startDate)){
+					continue;
+				}
+				if(this.search.endDate !== "" && new Date(o.date) > new Date(this.search.endDate)){
+					continue;
+				}
+
+				if(this.search.role !== "" && this.search.role != o.sportsObject.type){
+					continue;
+				}
+				
+
+				this.history.push(o);
+			}
+
+			if (this.search.sort === "") {
+				
+			} else if (this.search.sort == 1) {
+					this.history.sort((a, b) => {
+					  let fa = a.name;
+					  let fb = b.name;
+					  if (fa < fb) {
+						return -1;
+					  }
+					  if (fa > fb) {
+						return 1;
+					  }
+					  return 0;
+					});
+			} else if (this.search.sort == 2) {
+					this.history.sort((a, b) => {
+						let fa = a.date;
+						let fb = b.date;
+						
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				} else if (this.search.sort == 4) {
+					this.history.sort((a, b) => {
+						let fb = a.name;
+						let fa = b.name;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				}else if (this.search.sort == 5) {
+					this.history.sort((a, b) => {
+						let fb = a.date;
+						let fa = b.date;
+						if (fa < fb) {
+						  return -1;
+						}
+						if (fa > fb) {
+						  return 1;
+						}
+						return 0;
+					  });
+
+
+				}
 		}
+	}, async getObject() {
+
 	}
 })
