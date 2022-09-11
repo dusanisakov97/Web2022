@@ -12,6 +12,7 @@ const addObject = {template: '<add-object></add-object>'}
 const singleObject = {template: '<single-object></single-object>'}
 const myObject = {template: '<my-object></my-object>'}
 const customerTrainings = {template: '<customer-trainings></customer-trainings>'}
+const coachTrainings = {template: '<coach-trainings></coach-trainings>'}
 
 
 const router = new VueRouter({
@@ -30,6 +31,7 @@ const router = new VueRouter({
 	{ path: '/single-object/:id', component: singleObject},
 	{ path: '/my-object', component: myObject},
 	{ path: '/customer-trainings', component: customerTrainings},
+	{ path: '/coach-trainings', component: coachTrainings},
 
 
   ]

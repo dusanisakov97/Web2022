@@ -302,5 +302,19 @@ public class AppMain {
 
 			return g.toJson(cus);
 		});
+		
+		get("/coach/training", (req, res) -> {
+			res.type("application/json");
+			Session session = req.session(true);
+			
+			User cus = session.attribute("user");
+			if(cus == null) {
+				res.status(403);
+				return null;
+			} else {
+				return g.toJson(sportsObjectDAO.getTrainingsForCoach(cus.getId()));
+
+			}
+		});
 	}
 }

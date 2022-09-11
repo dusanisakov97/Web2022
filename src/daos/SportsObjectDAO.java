@@ -77,5 +77,18 @@ public class SportsObjectDAO implements Serializable<List<SportsObject>> {
 		return sportsObject;
 	}
 
+
+	public List<Training> getTrainingsForCoach(UUID id) {
+		List<Training> trainings = new ArrayList<>();
+		for (SportsObject sportsObject : sportsObjects) {
+			for(Training training: sportsObject.getTrainings()) {
+				if(!sportsObject.isDeleted() && training.getCoachID().equals(id)) {
+					trainings.add(training);
+				}
+			}
+		}
+		return trainings;
+	}
+
 	
 }
