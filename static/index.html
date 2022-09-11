@@ -43,6 +43,10 @@
 	  <a class="item" href="/#/my-object" v-if="mode==='MANAGER'">
 	    My Object
 	  </a>
+	  <a class="item" href="/#/customer-trainings" v-if="mode==='CUSTOMER'">
+	    My Trainings
+	  </a>
+	  
 	  
 	  <div class="right menu">
 	    <a v-if="!mode" class="ui item" href="/#/customer-registration">
@@ -68,7 +72,7 @@
 
   <script src="app/singleObject.js"></script>
   <script src="app/my-object.js"></script>
-
+  <script src="app/customer-trainings.js"></script>
   <script src="app/blankPage.js"></script>
   <script src="app/users.js"></script>
   <script src="app/login.js"></script>

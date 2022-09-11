@@ -139,6 +139,8 @@ public class UserDAO implements Serializable<List<User>> {
 		Customer customer = getCustomerByID(id);
 		customer.getHistory().add(c);
 		customer.setNumberOfTrainings(customer.getNumberOfTrainings() - 1);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		c.setDate(LocalDate.now().format(formatter));
 		saveToJson(fileName, users);
 		return customer;
 	}

@@ -11,7 +11,7 @@ const profile = {template: '<profile></profile>'}
 const addObject = {template: '<add-object></add-object>'}
 const singleObject = {template: '<single-object></single-object>'}
 const myObject = {template: '<my-object></my-object>'}
-
+const customerTrainings = {template: '<customer-trainings></customer-trainings>'}
 
 
 const router = new VueRouter({
@@ -29,6 +29,8 @@ const router = new VueRouter({
 	{ path: '/add-object', component: addObject },
 	{ path: '/single-object/:id', component: singleObject},
 	{ path: '/my-object', component: myObject},
+	{ path: '/customer-trainings', component: customerTrainings},
+
 
   ]
 });

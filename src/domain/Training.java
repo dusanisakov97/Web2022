@@ -12,6 +12,7 @@ public class Training {
 	private String description;
 	private String image;
 	private Double extraPrice;
+	private String date;
 	
 	
 	public Training() {
@@ -85,5 +86,14 @@ public class Training {
 	public void setExtraPrice(Double extraPrice) {
 		this.extraPrice = extraPrice;
 	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	
 }

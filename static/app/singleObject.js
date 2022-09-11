@@ -123,6 +123,7 @@ Vue.component("single-object", {
 		buy(t) {
 			axios.post("/customer/training", t).then((response) => {
 				alert("Sucessfuly buy training!")
+				window.location.href = "/#/customer-trainings";
 			}).catch(() => {
 				alert("You don't have training on your fee!")
 			});
